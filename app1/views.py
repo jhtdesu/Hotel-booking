@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm, LoginForm
+from .forms import CreateUserForm, LoginForm, Information
 
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
+from django.contrib.auth.models import User
 def home(request):
 
     return render(request, 'app1/index.html')
@@ -53,7 +54,7 @@ def login(request):
 
                 auth.login(request, user)
 
-                return redirect("dashboard")
+                return redirect("homepage")
 
     context = {'form':form}
 
@@ -68,6 +69,24 @@ def user_logout(request):
     return redirect("login")
 
 @login_required(login_url='login')
-def dashboard(request):
+def homepage(request):
 
-    return render(request, 'app1/dashboard.html')
+    return render(request, 'app1/homepage.html')
+
+def editinfo(request):
+    form = Information()
+    if request.method == "POST":
+
+        form = Information(request.POST, instance=request.user)
+
+        if form.is_valid():
+
+            form.save()
+            messages.success(request, "Cap nhat")
+            return redirect("homepage")
+    context = {'form':form}
+    return render(request, 'app1/editinfo.html', context=context)
+
+def info(request):
+   
+    return render(request, 'app1/info.html')
