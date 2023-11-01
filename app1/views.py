@@ -86,7 +86,7 @@ def editinfo(request):
             return redirect("dashboard")
     context = {'form':form}
     return render(request, 'app1/editinfo.html', context=context)
-
+@login_required(login_url='login')
 def info(request):
    
     return render(request, 'app1/info.html')
