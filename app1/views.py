@@ -90,3 +90,7 @@ def editinfo(request):
 def info(request):
    
     return render(request, 'app1/info.html')
+
+def list(request):
+
+    return render(request, 'app1/list.html')
