@@ -2,18 +2,20 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Category(models.Model):
+class Hotel(models.Model):
     name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='hotel_images',blank=True,null=True)
 
     class Meta:
         ordering = ('name',)
-        verbose_name_plural = 'Categories'
 
     def __str__(self):
         return self.name
     
 class Room(models.Model):
-    category =models.ForeignKey(Category, related_name='rooms',on_delete=models.CASCADE)
+    hotel = models.ForeignKey(Hotel, related_name='hotel',on_delete=models.CASCADE)
+    capacity = models.IntegerField()
+    beds = models.IntegerField()
     number = models.CharField(max_length=3)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)

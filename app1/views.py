@@ -9,7 +9,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-from app1.models import Category, Room
+from app1.models import Hotel, Room
+from django.shortcuts import render, get_object_or_404
+from .models import Room
 
 def home(request):
 
@@ -96,9 +98,17 @@ def info(request):
 
 def roomlist(request):
     rooms = Room.objects.filter(is_booked=False)[0:6]
-    categories = Category.objects.all()
+    hotels = Hotel.objects.all()
 
     return render(request, 'app1/room_list.html',{
-        'categories': categories,
+        'hotels':hotels,
         'rooms':rooms,
+    })
+
+def detail(request, pk):
+    room = get_object_or_404(Room, pk=pk)
+
+    return render(request, 'app1/detail.html',{
+        'room': room
+
     })
