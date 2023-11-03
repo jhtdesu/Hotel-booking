@@ -3,40 +3,27 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div>
-    <h2 class="mt-6 px-6 py-12 text-center">
-        Available Rooms
-    </h2>
-
-    <div class="grid grid-cols-3 gap-3">
-        {% for room in rooms %}
-            <div>
-                <a href="#">
-                    <div><img src="{{ room_image.url }}" class=" rounded-t-xl"></div>
-
-                    <div>
-                        <h2 class=" text ">{{ room.name }}</h2>
-                        <p class=" text ">{{ room.price }}</p>
-                    </div>
-                </a>
-            </div>
-        {% endfor %}
-    </div>
-<div>
 
 <div>
     <h2 class="mt-6 px-6 py-12 text-center"> Hotels </h2>
+    <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
     <div>
+        <div class="container text-center p-5">
+            <div class="row row-cols-3 row-gap-5 col-gap-5">
         {% for hotel in hotels %}
         <div>
             <a href="#">
                 <div>
+                    <div class="col"><img src="https://www.theknot.com/tk-media/images/9a506749-95e9-47cf-857e-5374f2205b93~rs_768.h" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
                     <h2 class=" text ">{{ hotel.name }}</h2>
                     <p class=" text ">{{ hotel.rooms.count }} rooms</p>
                 </div>
             </a>
         </div>
         {% endfor %}
+    </div>
+</div>
+<hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
     </div>
 <div>
 {% endblock %}
