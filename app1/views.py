@@ -102,3 +102,6 @@ def roomlist(request):
         'categories': categories,
         'rooms':rooms,
     })
+
+def list(request):
+    return render(request, 'app1/list.html')

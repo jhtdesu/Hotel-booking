@@ -15,5 +15,6 @@ urlpatterns = [
     path('homepage', views.homepage, name="homepage"),
     path('editinfo', views.editinfo, name="editinfo"),
     path('info', views.info, name="info"),
-    path('room_list', views.roomlist, name='room_list')
+    path('room_list', views.roomlist, name='room_list'),
+    path('list', views.list, name= 'list'),
 ]
