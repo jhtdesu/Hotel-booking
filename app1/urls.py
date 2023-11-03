@@ -12,5 +12,8 @@ urlpatterns = [
 
     path('user-logout', views.user_logout, name="user-logout"),
 
-    path('dashboard', views.dashboard, name="dashboard"),
+    path('homepage', views.homepage, name="homepage"),
+    path('editinfo', views.editinfo, name="editinfo"),
+    path('info', views.info, name="info"),
+    path('room_list', views.roomlist, name='room_list')
 ]

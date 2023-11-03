@@ -1,0 +1,25 @@
+{% extends 'app1/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <h2 class="mt-6 px-6 py-12 text-center">
+        Availabale Rooms
+    </h2>
+
+    <div>
+        {% for room in rooms %}
+            <div>
+                <a href="#">
+                    <div><img src="{{ room.image.url }}"></div>
+                    <div>
+                        <h2 class=" text ">{{ room.name }}</h2>
+                        <p class=" text ">{{ room.price }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

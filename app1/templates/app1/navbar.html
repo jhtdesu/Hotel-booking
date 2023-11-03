@@ -1,9 +1,11 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-center">
 
-    <a class="navbar-brand main-heading" href="{% url '' %}"> 
+  &nbsp; &nbsp; &nbsp;
+
+    <a class="navbar-brand main-heading p-2" href="{% url 'homepage' %}"> 
             
-      &nbsp; Demo
+      &nbsp; <strong>Demo</strong>
     
     </a>
   
@@ -47,9 +49,19 @@
               <a class="nav-link" href="{% url 'user-logout' %}">Đăng xuất &nbsp; </a>
   
             </li>
+            &nbsp;     &nbsp;     &nbsp; 
   
+  
+            <li class="nav-item">
+  
+              <a class="nav-link" href="{% url 'info' %}">Tài khoản &nbsp; </a>
+  
+            </li>
+            
+
   
         </ul>
+  
   
         {% else %}
   
@@ -72,7 +84,21 @@
   
         {% endif %}
       
+        &nbsp;     &nbsp;     &nbsp; &nbsp;     &nbsp;     &nbsp; 
+        &nbsp;     &nbsp;     &nbsp; &nbsp;     &nbsp;     &nbsp; 
+        &nbsp;     &nbsp;     &nbsp; &nbsp;     &nbsp;     &nbsp; 
+        &nbsp;     &nbsp;     &nbsp; &nbsp;     &nbsp;     &nbsp; 
+        &nbsp;     &nbsp;     &nbsp; &nbsp;     &nbsp;     &nbsp; 
+        &nbsp;     &nbsp;     &nbsp; &nbsp;     &nbsp;     &nbsp; 
+        &nbsp;     &nbsp;     &nbsp; &nbsp;     &nbsp;     &nbsp; 
+        &nbsp;     &nbsp;     &nbsp; &nbsp;     &nbsp;     &nbsp; 
+        &nbsp;     &nbsp;     &nbsp; &nbsp;     &nbsp;     &nbsp;
+        &nbsp;     &nbsp;     &nbsp; &nbsp;             
         
+        <form class="d-flex px-5" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-light btn-outline-success" type="submit">Search</button>
+        </form>
       </div>
   
   

@@ -1,0 +1,48 @@
+{% extends 'app1/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <body>
+
+        <div class="container bg-light shadow-md p-5 form-layout">
+
+            <h3> Tài khoản </h3>
+
+            <h5> Thông tin của {{user}}  <i class="fa fa-user" aria-hidden="true"></i>  </h5>
+            <br>
+            <hr>
+            <br>
+            
+            <form method="POST" autocomplete="off">
+
+                {% csrf_token %}
+
+
+                <h6>Email: {{user.email}}</h6>
+
+                <br>
+
+                <h6>Họ: {{user.last_name}} </h6>
+
+                <br>
+                <h6>Tên: {{user.first_name}} </h6>
+
+                <br>
+
+                <a class="btn btn-primary" type="button" href="{% url 'editinfo' %}"> Chỉnh sửa </a>
+
+            </form>
+
+            <br>
+
+
+        </div>
+
+        <br>
+
+    </body>
+
+
+{% endblock %}
