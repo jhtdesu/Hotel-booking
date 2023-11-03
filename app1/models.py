@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 class Hotel(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='hotel_images',blank=True,null=True)
+    totalroom = models.IntegerField(default=1)
+    description = models.TextField(blank=True, null=True)
 
     class Meta:
         ordering = ('name',)
@@ -14,8 +16,7 @@ class Hotel(models.Model):
     
 class Room(models.Model):
     hotel = models.ForeignKey(Hotel, related_name='hotel',on_delete=models.CASCADE)
-    capacity = models.IntegerField()
-    beds = models.IntegerField()
+    beds = models.IntegerField(default=1)
     number = models.CharField(max_length=3)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)

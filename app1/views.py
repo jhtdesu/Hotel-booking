@@ -105,7 +105,6 @@ def roomlist(request):
         'rooms':rooms,
     })
 
-<<<<<<< HEAD
 def detail(request, pk):
     room = get_object_or_404(Room, pk=pk)
 
@@ -113,7 +112,5 @@ def detail(request, pk):
         'room': room
 
     })
-=======
 def list(request):
     return render(request, 'app1/list.html')
->>>>>>> f7acefd751871731c26098a1ac5c1b80fefda453
