@@ -64,7 +64,7 @@ def login(request):
     context = {'form':form}
 
     return render(request, 'app1/login.html', context=context)
-
+@login_required(login_url='login')
 def user_logout(request):
 
     auth.logout(request)
@@ -73,11 +73,11 @@ def user_logout(request):
 
     return redirect("login")
 
-@login_required(login_url='login')
+
 def homepage(request):
 
     return render(request, 'app1/homepage.html')
-
+@login_required(login_url='login')
 def editinfo(request):
     form = Information()
     if request.method == "POST":
@@ -91,11 +91,11 @@ def editinfo(request):
             return redirect("homepage")
     context = {'form':form}
     return render(request, 'app1/editinfo.html', context=context)
-
+@login_required(login_url='login')
 def info(request):
    
     return render(request, 'app1/info.html')
-
+@login_required(login_url='login')
 def roomlist(request):
     rooms = Room.objects.filter(is_booked=False)[0:6]
     hotels = Hotel.objects.all()
@@ -104,7 +104,7 @@ def roomlist(request):
         'hotels':hotels,
         'rooms':rooms,
     })
-
+@login_required(login_url='login')
 def detail(request, pk):
     # room = get_object_or_404(Room, pk=pk)
     hotel = get_object_or_404(Hotel, pk=pk)
@@ -112,5 +112,6 @@ def detail(request, pk):
     return render(request, 'app1/detail.html',{
         'hotel': hotel
     })
+@login_required(login_url='login')
 def list(request):
     return render(request, 'app1/list.html')
