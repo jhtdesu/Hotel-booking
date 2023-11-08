@@ -3,35 +3,50 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="pb-6 grid grid-cols-4 gap-4 bg-gray-100">
-        <div class="col-span-1">
-            <form method="get" action="{% url 'search' %}">
-                <input name="query" class="w-full py-4 px-6 border rounded-xl" type="text" value="{{ query }}" placeholder="Find a bike, a chair or car...">
+    <br>
 
-                <button class="mt-2 py-4 px-8 text-lg bg-teal-500 text-white rounded-xl">Search</button>
-            </form>
-
-
-            <hr class="my-6">
-
-            <p class="font-semibold">Clear filters</p>
-
-            <ul>
-                <li><a href="{% url 'search' %}" class="mt-2 py-4 px-8 inline-block bg-yellow-500 text-lg rounded-xl text-white">Clear</a>
+    <div>
+        <div class="container-fluid p-4 rounded" style=" background-color: #78C2AD;">
+            
+            <div class="row">
+                <div class="col-5">
+                    <form class="d-flex mx-auto text-center" style="max-width: 300px;" role="search"method="get" action="{% url 'search' %}">
+                        <input name="query" class="form-control me-2 rounded-pill shadow-sm" type="search" placeholder="Search" aria-label="Search" type="text" value="{{ query }}">
+                        <button class="btn btn-light btn-outline-success rounded-pill shadow-sm" type="submit">Search</button>
+                      </form> 
+                </div>
+                <div class="col">        
+                    <a href="{% url 'search' %}" class="btn btn-light btn-outline-danger rounded-pill shadow-sm">Clear filter</a>
+                </div>
+            </div>
         </div>
 
-        <div class="col-span-3">
-            <div class="grid grid-cols-3 gap-3">
+        <br>
+
+        <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+        <br>
+
+        <div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Hotels</b></h2></div>
+
+        <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+        <br>
+
+        <div class="container text-center">
+            <div class="row row-cols-3 row-gap-5 col-gap-5">
+            
                 {% for hotel in hotels %}
                     <div>
                         <a href="{% url 'detail' hotel.id %}">
                             <div>
                                 {% if hotel.image %}
-                                <img src="{{hotel.image.url }}" class="rounded-t-xl">
+                                <img src="{{hotel.image.url }}" class="rounded shadow-lg" style="width: 200px; height: 250px; object-fit: cover">
                                 {% endif %}
                             </div>
     
                             <div class="p-6 bg-white rounded-b-xl">
+                                <br>
                                 <h2 class="text-2xl">{{ hotel.name }}</h2>
                             </div>
                         </a>
@@ -39,5 +54,4 @@
                 {% endfor %}
             </div>
         </div>
-    </div>
 {% endblock %}
