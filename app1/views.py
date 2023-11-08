@@ -106,11 +106,11 @@ def roomlist(request):
     })
 
 def detail(request, pk):
-    room = get_object_or_404(Room, pk=pk)
+    # room = get_object_or_404(Room, pk=pk)
+    hotel = get_object_or_404(Hotel, pk=pk)
 
     return render(request, 'app1/detail.html',{
-        'room': room
-
+        'hotel': hotel
     })
 def list(request):
     return render(request, 'app1/list.html')

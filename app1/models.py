@@ -7,7 +7,7 @@ class Hotel(models.Model):
     image = models.ImageField(upload_to='hotel_images',blank=True,null=True)
     totalroom = models.IntegerField(default=1)
     description = models.TextField(blank=True, null=True)
-
+    adress = models.TextField(blank=True, null=True)
     class Meta:
         ordering = ('name',)
 

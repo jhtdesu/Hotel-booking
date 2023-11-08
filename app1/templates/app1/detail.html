@@ -2,12 +2,11 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %}{{ room.name }}{% endblock %}
 
 {% block content %}
 <div class="grid grid-cols-5 gap-6">
     </div class="col-span-3">
-         <img src="{{ room.image.url }}" class="rounded-xl">
+         <h3>{{hotel.name}}</h3>
     </div>
 </div>
 {% endblock %}

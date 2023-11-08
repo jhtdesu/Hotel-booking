@@ -13,7 +13,7 @@
             <div class="row row-cols-3 row-gap-5 col-gap-5">
         {% for hotel in hotels %}
         <div>
-            <a href="#">
+            <a href="{% url'app1:detail'hotel.id %}">
                 <div>
                     <div class="col"><img src="https://www.theknot.com/tk-media/images/9a506749-95e9-47cf-857e-5374f2205b93~rs_768.h" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
                     <h2 class=" text ">{{ hotel.name }}</h2>
