@@ -19,5 +19,6 @@ urlpatterns = [
     path('info', views.info, name="info"),
     path('room_list', views.roomlist, name='room_list'),
     path('list', views.list, name= 'list'),
+    path('search', views.search, name= 'search'),
     path('detail/<int:pk>/', views.detail, name= 'detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

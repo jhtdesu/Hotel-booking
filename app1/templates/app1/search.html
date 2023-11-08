@@ -1,0 +1,43 @@
+{% extends 'app1/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="pb-6 grid grid-cols-4 gap-4 bg-gray-100">
+        <div class="col-span-1">
+            <form method="get" action="{% url 'search' %}">
+                <input name="query" class="w-full py-4 px-6 border rounded-xl" type="text" value="{{ query }}" placeholder="Find a bike, a chair or car...">
+
+                <button class="mt-2 py-4 px-8 text-lg bg-teal-500 text-white rounded-xl">Search</button>
+            </form>
+
+
+            <hr class="my-6">
+
+            <p class="font-semibold">Clear filters</p>
+
+            <ul>
+                <li><a href="{% url 'search' %}" class="mt-2 py-4 px-8 inline-block bg-yellow-500 text-lg rounded-xl text-white">Clear</a>
+        </div>
+
+        <div class="col-span-3">
+            <div class="grid grid-cols-3 gap-3">
+                {% for hotel in hotels %}
+                    <div>
+                        <a href="{% url 'detail' hotel.id %}">
+                            <div>
+                                {% if hotel.image %}
+                                <img src="{{hotel.image.url }}" class="rounded-t-xl">
+                                {% endif %}
+                            </div>
+    
+                            <div class="p-6 bg-white rounded-b-xl">
+                                <h2 class="text-2xl">{{ hotel.name }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

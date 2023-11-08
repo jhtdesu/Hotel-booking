@@ -99,8 +99,8 @@
       <ul class="navbar-nav mx-auto">
         &nbsp;     &nbsp;     &nbsp; 
         <li class="nav-item">
-       <form class="d-flex mx-auto text-center" style="max-width: 300px;" role="search">
-        <input class="form-control me-2 rounded-pill shadow-sm" type="search" placeholder="Search" aria-label="Search">
+       <form class="d-flex mx-auto text-center" style="max-width: 300px;" role="search"method="get" action="{% url 'search' %}">
+        <input name="query" class="form-control me-2 rounded-pill shadow-sm" type="search" placeholder="Search" aria-label="Search" type="text" value="{{ query }}">
         <button class="btn btn-light btn-outline-success rounded-pill shadow-sm" type="submit">Search</button>
       </form> 
       </li>

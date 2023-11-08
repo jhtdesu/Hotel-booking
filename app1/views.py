@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from app1.models import Hotel, Room
 from django.shortcuts import render, get_object_or_404
 from .models import Room
+from django.db.models import Q
 
 def home(request):
 
@@ -115,3 +116,15 @@ def detail(request, pk):
 @login_required(login_url='login')
 def list(request):
     return render(request, 'app1/list.html')
+@login_required(login_url='login')
+def search(request):
+    query = request.GET.get('query', '')
+    hotels = Hotel.objects.filter()
+    if query:
+        hotels = hotels.filter(Q(name__icontains=query) | Q(description__icontains=query)|Q(adress__icontains=query))
+
+    return render(request, 'app1/search.html', {
+        'hotels': hotels,
+        'query': query,
+
+    })
