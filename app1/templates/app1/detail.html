@@ -9,17 +9,16 @@
 <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 <br>
 
-<div class="container p-3 rounded" style=" background-color: #78C2AD;">
+<div class="container p-3 rounded shadow-md" style=" background-color: #78C2AD;">
     <div class="row">
         <div class="col-3">
 
-            <div class="row">
+            <div class="row px-auto mx-auto">
                 
                 <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" width: 90%; background-color: aliceblue;">
 
-                    <h3>{{hotel.name}}</h3>
                     {% if hotel.image %} 
-                    <img src="{{ hotel.image.url }}" class="rounded" style="max-width: 200px;" alt="ảnh lỗi r huhu">
+                    <img src="{{ hotel.image.url }}" class="rounded shadow-lg" style="max-width: 200px;" alt="ảnh lỗi r huhu">
                     {% endif %}
 
                 </div>
@@ -27,13 +26,17 @@
                 
             </div>
             <br>
-            <div class="row">
+            <div class="row px-auto mx-auto">
                 <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" width: 90%; min-height: 200px; background-color: aliceblue;">
                 
 
-                    <br>
-                    <br>
-                    <h3> Test2</h3>
+                        <h3>Đánh giá</h3>
+
+                    <div class="container rounded px-auto mx-auto p-3" style="min-height: 250px; background-color: #A9A9A9;">
+
+                        
+
+                    </div>
                 
                 </div>
                 
@@ -47,18 +50,18 @@
 
                 <div class="row">
 
-                    <div class="col-10">
-                        <div class="container-fluid p-3 rounded mx-auto px-auto" style="  background-color: aliceblue;" >
+                    <div class="col-10 rounded p-2 px-auto mx-auto">
+                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 99%; background-color: aliceblue;" >
                     
-                        <h2>Testingasdasdasdasdasa</h2>
+                        <h2>{{ hotel.name }}</h2>
 
                         </div>
                     
                     </div>
-                        <div class="col-2">
-                            <div class="container-fluid p-3 rounded mx-auto px-auto" style="height: 101%; background-color: aliceblue;">
+                        <div class="col-2 rounded p-2 px-auto mx-auto">
+                            <div class="container-fluid p-3 rounded mx-auto px-auto bg-warning" style="width: 93%; height: 101%;">
                     
-                        <h3>Test3</h3>
+                        <h3>Ghim</h3>
 
                         </div>
                     </div>
@@ -71,8 +74,14 @@
 
                     <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 97%; min-height: 250px; background-color: aliceblue;" >
                     
-                        <h2>Testing</h2>
+                        <h4>Mô tả</h4>
+                        <hr style=" height: 3px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+                        <div class="container rounded px-auto mx-auto p-3" style="min-height: 250px; background-color: #A9A9A9;">
 
+                            <h3>{{ hotel.description }}</h3>
+
+                        </div>
+                        
                         </div>
 
                 </div>
@@ -83,7 +92,7 @@
 
                     <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 97%; background-color: aliceblue;" >
                     
-                        <h2>Testing</h2>
+                        <h2>{{ hotel.adress }}</h2>
 
                         </div>
 
@@ -91,40 +100,40 @@
 
                 <br>
 
-                <div class="row">
+                <div class="row rounded text-center p-2 px-auto mx-auto" style=" background-color: aliceblue;">
 
                     <div class="col">
 
-                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" background-color: #A9A9A9;" >
+                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 97%; background-color: #A9A9A9;" >
                     
-                            <h2>Testing</h2>
+                            <h5>Room #1</h5>
 
                             </div>
 
                     </div>
                     <div class="col">
 
-                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" background-color: #A9A9A9;" >
+                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 97%; background-color: #A9A9A9;" >
                     
-                            <h2>Testing</h2>
+                            <h5>Room #2</h5>
 
                             </div>
 
                     </div>
                     <div class="col">
 
-                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" background-color: #A9A9A9;" >
+                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 97%; background-color: #A9A9A9;" >
                     
-                            <h2>Testing</h2>
+                            <h5>Room #3</h5>
 
                             </div>
 
                     </div>
                     <div class="col">
 
-                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" background-color: #A9A9A9;" >
+                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 97%; background-color: #A9A9A9;" >
                     
-                            <h2>Testingasd</h2>
+                            <h5>Room #4</h5>
 
                             </div>
 
@@ -134,13 +143,14 @@
 
                 <br>
 
-                <div class="row">
-
+                <div class="row rounded text-center p-2 mx-auto px-auto" style="background-color: aliceblue;">
+                    <h3>Date</h3>
+                    <hr style=" height: 3px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
                     <div class="col">
 
-                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" background-color: aliceblue;" >
+                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" background-color: #A9A9A9;" >
                     
-                            <h2>Testing</h2>
+                            <h2>Ngày đặt</h2>
 
                             </div>
 
@@ -148,9 +158,9 @@
 
                     <div class="col">
 
-                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" background-color: aliceblue;" >
+                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" background-color: #A9A9A9;" >
                     
-                            <h2>Testing</h2>
+                            <h2>Ngày rời</h2>
     
                             </div>
 
@@ -161,9 +171,59 @@
         </div>
           
     </div>
+
+    <br>
+
+    <div class="container d-flex justify-content-end">
+
+        <a class="btn btn-warning btn-lg" " type="button" href=""> Đặt phòng</a>
+
+    </div>
+        
+
+    <br>
+
 </div>
 
 <br>
 
+<hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+<div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Người dùng đánh giá</b></h2></div>
+
+<hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
 <br>
+
+<div class="container p-3 rounded shadow-md" style=" background-color: #78C2AD;">
+
+    <div class="row gx-5 px-auto mx-auto p-3">
+            <div class="col p-2 px-auto mx-auto">
+                <div class="p-3 border bg-light rounded">Review #1</div>
+            </div>
+            <div class="col p-2 px-auto mx-auto">
+                <div class="p-3 border bg-light rounded">Review #2</div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col p-2 px-auto mx-auto">
+                <div class="p-3 border bg-light rounded">Review #3</div>
+            </div>
+            <div class="col p-2 px-auto mx-auto">
+                <div class="p-3 border bg-light rounded">Review #4</div>
+            </div>
+    </div>
+</div>
+
+<br>
+
+<div class="container text-center"><a class="btn btn-primary btn-lg" type="button" href="{% url 'search' %}"> Xem thêm </a>
+
+<br>
+
+<hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">    
+
+<br>
+
+<br>
+
 {% endblock %}
