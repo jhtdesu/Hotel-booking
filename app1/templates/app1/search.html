@@ -10,8 +10,8 @@
             
             <div class="row">
                 <div class="col-5">
-                    <form class="d-flex mx-auto text-center" style="max-width: 300px;" role="search"method="get" action="{% url 'search' %}">
-                        <input name="query" class="form-control me-2 rounded-pill shadow-sm" type="search" placeholder="Search" aria-label="Search" type="text" value="{{ query }}">
+                    <form class="d-flex mx-auto text-center" style="max-width: 500px;" role="search"method="get" action="{% url 'search' %}">
+                        <input name="query" class="form-control me-2 rounded-pill shadow-sm" type="search" autocomplete="off" placeholder="Tìm kiếm" aria-label="Search" type="text" value="{{ query }}">
                         <button class="btn btn-light btn-outline-success rounded-pill shadow-sm" type="submit">Search</button>
                       </form> 
                 </div>
@@ -37,7 +37,7 @@
             <div class="row row-cols-3 row-gap-5 col-gap-5">
             
                 {% for hotel in hotels %}
-                    <div>
+                    <div class="cards rounded px-auto mx-auto p-5">
                         <a href="{% url 'detail' hotel.id %}">
                             <div>
                                 {% if hotel.image %}
@@ -46,8 +46,11 @@
                             </div>
     
                             <div class="p-6 bg-white rounded-b-xl">
-                                <br>
-                                <h2 class="text-2xl">{{ hotel.name }}</h2>
+                                <h4 class="text-2xl hotelname">{{ hotel.adress }}</h4>
+                            </div>
+
+                            <div class="p-6 bg-white rounded-b-xl">
+                                <h2 class="text-2xl hotelname">{{ hotel.name }}</h2>
                             </div>
                         </a>
                     </div>

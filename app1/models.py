@@ -8,6 +8,7 @@ class Hotel(models.Model):
     totalroom = models.IntegerField(default=1)
     description = models.TextField(blank=True, null=True)
     adress = models.TextField(blank=True, null=True)
+    location = models.TextField(blank=True, null=True)
     class Meta:
         ordering = ('name',)
 

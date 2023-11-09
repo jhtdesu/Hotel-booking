@@ -76,8 +76,13 @@ def user_logout(request):
 
 
 def homepage(request):
+    hotels = Hotel.objects.filter()
+    return render(request, 'app1/homepage.html',{
+        'hotels': hotels,
+    })
 
-    return render(request, 'app1/homepage.html')
+
+
 @login_required(login_url='login')
 def editinfo(request):
     form = Information()
@@ -121,7 +126,7 @@ def search(request):
     query = request.GET.get('query', '')
     hotels = Hotel.objects.filter()
     if query:
-        hotels = hotels.filter(Q(name__icontains=query) | Q(description__icontains=query)|Q(adress__icontains=query))
+        hotels = hotels.filter(Q(name__icontains=query) |Q(description__icontains=query)|Q(location__icontains=query)|Q(adress__icontains=query))
 
     return render(request, 'app1/search.html', {
         'hotels': hotels,

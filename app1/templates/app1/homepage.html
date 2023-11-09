@@ -24,18 +24,36 @@
 
     <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 
-    <div class="container text-center p-5">
+    <br>
+
+    <div class="container text-center">
         <div class="row row-cols-3 row-gap-5 col-gap-5">
-          <div class="col"><img src="https://pix8.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?ca=6&ce=1&s=1024x768" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
-          <div class="col"><img src="https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
-          <div class="col"><img src="https://www.theknot.com/tk-media/images/9a506749-95e9-47cf-857e-5374f2205b93~rs_768.h" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
-          <div class="col"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/25/ce/ea/kingsford-hotel-manila.jpg?w=1200&h=-1&s=1" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
-          <div class="col"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/488042945.jpg?k=775534679a4e00703c8c40aaeba394c5316ea249650df98bfe958956752e4c4d&o=&hp=1" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
-          <div class="col"><img src="https://www.richmondehotels.com.ph/wp-content/uploads/2021/09/ortigas_banner.jpg" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
+          {% for hotel in hotels|slice:"0:6" %}
+                    <div>
+                        <a href="{% url 'detail' hotel.id %}">
+                            <div class="cards">
+                                {% if hotel.image %}
+                                <img src="{{hotel.image.url }}" class="rounded shadow-lg" style="width: 200px; height: 250px; object-fit: cover">
+                                {% endif %}
+                            </div>
+    
+                            <div class="p-6 bg-white rounded-b-xl">
+                                <br>
+                                <h2 class="text-2xl hotelname">{{ hotel.name }}</h2>
+                            </div>
+                        </a>
+                    </div>
+          {% endfor %}
+          <br>
           <div class="container text-center"><a class="btn btn-primary btn-lg" type="button" href="{% url 'search' %}"> Xem thêm </a>
           </div>
         </div>
       </div>
+    <br>
+    <br>
+
+    <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
     <br>
 
     <div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Popular destinations</b></h2></div>

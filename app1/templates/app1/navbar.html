@@ -1,11 +1,11 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-center">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-center shadow">
 
   &nbsp; &nbsp; &nbsp;
 
     <a class="navbar-brand main-heading p-2" href="{% url 'homepage' %}"> 
             
-      &nbsp; <strong><b style="color: aquamarine;">T</b>ravel <b style="color: aquamarine;">T</b>rove</strong>
+      &nbsp; <strong class="navtitle"><b style="color: aquamarine;">T</b>ravel <b style="color: aquamarine;">T</b>rove</strong>
     
     </a>
   
@@ -98,10 +98,10 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto">
         &nbsp;     &nbsp;     &nbsp; 
-        <li class="nav-item">
+        <li>
        <form class="d-flex mx-auto text-center" style="max-width: 300px;" role="search"method="get" action="{% url 'search' %}">
-        <input name="query" class="form-control me-2 rounded-pill shadow-sm" type="search" placeholder="Search" aria-label="Search" type="text" value="{{ query }}">
-        <button class="btn btn-light btn-outline-success rounded-pill shadow-sm" type="submit">Search</button>
+        <input name="query" class="form-control me-2 rounded-pill shadow" type="search" autocomplete="off" placeholder="Search" aria-label="Search" type="text" value="{{ query }}">
+        <button class="btn btn-light btn-outline-success rounded-pill shadow" type="submit">Search</button>
       </form> 
       </li>
       </ul>     
