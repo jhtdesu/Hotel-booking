@@ -27,8 +27,11 @@
                     <br>
                     <br>
                     {% if rooms.is_booked == True %}
+
                         <h3 style="color: red;">Phòng đã bị đặt</h3>
 
+                        <h3 style="color: red;">bởi {{rooms.created_by}}</h3>
+                        
                     {% else %}
                         <h3 style="color: #78C2AD;">Phòng còn trống</h3>
                     {% endif %}
@@ -122,11 +125,26 @@
 
     <div class="container d-flex justify-content-end">
 
-        <button type="submit" class="btn btn-warning btn-lg"> 
-            Đặt phòng
+        
+        {% if rooms.is_booked == True %}
 
-        </button>
+            {% if rooms.created_by == user %}
 
+                <button type="submit" class="btn btn-danger btn-lg"> 
+                    Hủy phòng
+
+                </button>
+
+            {% endif %}
+
+        {% else %}
+
+            <button type="submit" class="btn btn-warning btn-lg"> 
+                            Đặt phòng
+
+                        </button>
+
+        {% endif %}
     </div>
         
 

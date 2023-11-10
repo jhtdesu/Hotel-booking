@@ -140,6 +140,17 @@ def room(request, pk):
             messages.success(request, "Đặt phòng thành công!")
 
             return redirect("homepage")
+        
+        elif form.is_valid() and rooms.is_booked:
+            bookmodel = form.save(commit=False)
+            bookmodel.is_booked = False
+            bookmodel.created_by = request.user
+            bookmodel.save()
+            messages.success(request, "Hủy phòng thành công!")
+
+            return redirect("homepage")
+
+
         else:
             messages.error(request, "Phòng không còn trống!!")
             return redirect("homepage")
