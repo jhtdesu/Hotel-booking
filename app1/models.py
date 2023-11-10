@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+import datetime
 # Create your models here.
 class Hotel(models.Model):
     name = models.CharField(max_length=255)
@@ -25,6 +25,8 @@ class Room(models.Model):
     image = models.ImageField(upload_to='room_images',blank=True,null=True)
     is_booked = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    book_in = models.DateField(default=datetime.date.today)
+    book_out = models.DateField(default=datetime.date.today)
 
     def __str__(self):
         return self.name

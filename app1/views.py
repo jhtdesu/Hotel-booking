@@ -120,6 +120,14 @@ def detail(request, pk):
         'hotel': hotel,
         'rooms' : rooms,
     })
+
+def room(request, pk):
+    rooms = get_object_or_404(Room, pk=pk)
+
+    return render(request, 'app1/room.html',{
+        'rooms' : rooms,
+    })
+
 @login_required(login_url='login')
 def list(request):
     return render(request, 'app1/list.html')
