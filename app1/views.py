@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm, LoginForm, Information
+from .forms import CreateUserForm, LoginForm, Information, CommentForm
 
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
@@ -143,3 +143,23 @@ def search(request):
         'query': query,
 
     })
+def comment(request, pk):
+    hotel = get_object_or_404(Hotel, pk=pk)
+    form = CommentForm()
+
+    if request.method == "POST":
+
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            commentmodel = form.save(commit=False)
+            commentmodel.created_by = request.user
+            commentmodel.hotel_id = pk
+            commentmodel.save()
+            messages.success(request, "Bình luận thành cong(gay)!")
+
+            return redirect("homepage")
+
+    context = {'form': form}
+
+    return render(request, 'app1/comment.html', context=context)

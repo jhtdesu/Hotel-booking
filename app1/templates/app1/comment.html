@@ -1,0 +1,19 @@
+{% extends 'app1/base.html' %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container bg-light shadow-md p-5 form-layout">
+    <form method="POST" autocomplete="off">
+
+        {% csrf_token %}
+            
+        {{form.as_p}}   
+        <button type="submit" class="btn btn-primary"> 
+            Comment &nbsp; <i class="fa fa-check" aria-hidden="true"></i>
+
+        </button>
+        &nbsp;
+    </form>
+
+</div>
+{% endblock %}

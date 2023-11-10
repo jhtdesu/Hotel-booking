@@ -30,3 +30,10 @@ class Room(models.Model):
 
     def __str__(self):
         return self.name
+class Comment(models.Model):
+    hotel = models.ForeignKey(Hotel, related_name="comments", on_delete=models.CASCADE)
+    body = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, related_name='user_comments',on_delete=models.CASCADE)
+    def __str__(self):
+        return '%s-%s'%(self.hotel.name,self.created_by)
