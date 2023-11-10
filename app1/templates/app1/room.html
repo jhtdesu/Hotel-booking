@@ -24,6 +24,15 @@
                     {% if rooms.image %} 
                     <img src="{{ rooms.image.url }}" class="rounded shadow-lg" style="width: 200px; height: 250px; object-fit: cover;" alt="ảnh lỗi r huhu">
                     {% endif %}
+                    <br>
+                    <br>
+                    {% if rooms.is_booked == True %}
+                        <h3 style="color: red;">Phòng đã bị đặt</h3>
+
+                    {% else %}
+                        <h3 style="color: #78C2AD;">Phòng còn trống</h3>
+                    {% endif %}
+
 
                 </div>
 
@@ -44,7 +53,7 @@
                     <div class="col-10 rounded p-2 px-auto mx-auto">
                         <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 99%; background-color: aliceblue;" >
                     
-                        <h2>{{ rooms.name }}</h2>
+                        <h2># {{ rooms.name }}</h2>
 
                         </div>
                     
