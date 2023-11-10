@@ -9,6 +9,7 @@ class Hotel(models.Model):
     description = models.TextField(blank=True, null=True)
     adress = models.TextField(blank=True, null=True)
     location = models.TextField(blank=True, null=True)
+    rating = models.IntegerField(default=1)
     class Meta:
         ordering = ('name',)
 
@@ -18,14 +19,12 @@ class Hotel(models.Model):
 class Room(models.Model):
     hotel = models.ForeignKey(Hotel, related_name='hotel',on_delete=models.CASCADE)
     beds = models.IntegerField(default=1)
-    number = models.CharField(max_length=3)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     price = models.FloatField()
     image = models.ImageField(upload_to='room_images',blank=True,null=True)
     is_booked = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, related_name='rooms',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

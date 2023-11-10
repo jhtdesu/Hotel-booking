@@ -114,9 +114,11 @@ def roomlist(request):
 def detail(request, pk):
     # room = get_object_or_404(Room, pk=pk)
     hotel = get_object_or_404(Hotel, pk=pk)
+    rooms = Room.objects.filter(hotel__name=hotel.name)
 
     return render(request, 'app1/detail.html',{
-        'hotel': hotel
+        'hotel': hotel,
+        'rooms' : rooms,
     })
 @login_required(login_url='login')
 def list(request):

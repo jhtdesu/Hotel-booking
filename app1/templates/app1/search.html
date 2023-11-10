@@ -37,7 +37,7 @@
             <div class="row row-cols-3 row-gap-5 col-gap-5">
             
                 {% for hotel in hotels %}
-                    <div class="cards rounded px-auto mx-auto p-5">
+                    <div class="cards rounded p-5">
                         <a href="{% url 'detail' hotel.id %}">
                             <div>
                                 {% if hotel.image %}
