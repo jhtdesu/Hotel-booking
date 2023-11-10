@@ -82,15 +82,14 @@
 
     <br>
 
-    <div class="container-fluid p-5 rounded" style=" background-color: #78C2AD;">
-    
-      <div class="container-fluid p-2" style=" border-radius: 5px;">
-  
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-  
-        </div>
-  
-    </div>
+    <div class="container-fluid p-4 rounded" style=" background-color: #78C2AD;">            
+
+      <form class="d-flex mx-auto text-center" style="max-width: 500px;" role="search"method="get" action="{% url 'search' %}">
+        <input name="query" class="form-control me-2 rounded-pill shadow-sm" type="search" autocomplete="off" placeholder="Tìm kiếm" aria-label="Search" type="text" value="{{ query }}">
+        <button class="btn btn-light btn-outline-success rounded-pill shadow-sm" type="submit">Search</button>
+      </form> 
+
+  </div>
 
     <br>
 
