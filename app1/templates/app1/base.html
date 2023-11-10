@@ -47,6 +47,20 @@
 
                 {% endif %}
 
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+
+
+                    <p id="message-timer" class="alert alert-danger float-center text-center message-text">
+
+
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> &nbsp; {{message}}
+
+
+                    </p>
+
+
+                {% endif %}
+
 
             {% endfor %}
 

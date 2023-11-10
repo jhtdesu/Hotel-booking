@@ -177,25 +177,21 @@
 <div class="container p-3 rounded shadow-md" style=" background-color: #78C2AD;">
 
     <div class="row gx-5 px-auto mx-auto p-3">
+
+        {% for comment in comment %}
+
             <div class="col p-2 px-auto mx-auto">
-                <div class="p-3 border bg-light rounded">Review #1</div>
+                <div class="p-3 border bg-light rounded">{{comment.body}}</div>
             </div>
-            <div class="col p-2 px-auto mx-auto">
-                <div class="p-3 border bg-light rounded">Review #2</div>
-            </div>
-            <div class="w-100"></div>
-            <div class="col p-2 px-auto mx-auto">
-                <div class="p-3 border bg-light rounded">Review #3</div>
-            </div>
-            <div class="col p-2 px-auto mx-auto">
-                <div class="p-3 border bg-light rounded">Review #4</div>
-            </div>
+
+        {% endfor %}
+
     </div>
 </div>
 
 <br>
 
-<div class="container text-center"><a class="btn btn-primary btn-lg" type="submit" href="{% url 'search' %}"> Xem thêm </a>
+<div class="container text-center"><a class="btn btn-primary btn-lg" type="submit" href="{% url 'comment' hotel.id %}"> Bình luận </a>
 
 <br>
 
@@ -204,6 +200,6 @@
 <br>
 
 <br>
-<a href="{% url 'comment' hotel.id %}">Add comment</a>
+
 
 {% endblock %}

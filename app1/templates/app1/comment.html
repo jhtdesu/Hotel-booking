@@ -2,17 +2,23 @@
 
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="container bg-light shadow-md p-5 form-layout">
+<div class="container bg-light shadow-md p-5 form-layout rounded">
     <form method="POST" autocomplete="off">
 
         {% csrf_token %}
             
-        {{form.as_p}}   
-        <button type="submit" class="btn btn-primary"> 
-            Comment &nbsp; <i class="fa fa-check" aria-hidden="true"></i>
+        {{form.body|as_crispy_field}}
 
-        </button>
-        &nbsp;
+        <br>
+        <div class="container d-flex justify-content-end">
+
+            <button type="submit" class="btn btn-primary"> 
+                Comment
+    
+            </button>
+            
+        </div>
+
     </form>
 
 </div>

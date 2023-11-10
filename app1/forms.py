@@ -35,12 +35,14 @@ class Information(UserChangeForm):
         model = User
         fields = ( 'email', 'first_name', 'last_name')
 
-class Book(forms.ModelForm):
+class BookingForm(forms.ModelForm):
 
     class Meta:
 
         model = Room
         fields = ['book_in', 'book_out']
+
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment

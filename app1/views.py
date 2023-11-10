@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm, LoginForm, Information, CommentForm
+from .forms import CreateUserForm, LoginForm, Information, CommentForm, BookingForm
 
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-from app1.models import Hotel, Room
+from app1.models import Hotel, Room, Comment
 from django.shortcuts import render, get_object_or_404
 from .models import Room
 from django.db.models import Q
@@ -115,17 +115,37 @@ def detail(request, pk):
     # room = get_object_or_404(Room, pk=pk)
     hotel = get_object_or_404(Hotel, pk=pk)
     rooms = Room.objects.filter(hotel__name=hotel.name)
+    comment = Comment.objects.filter(hotel__name=hotel.name)
 
     return render(request, 'app1/detail.html',{
         'hotel': hotel,
         'rooms' : rooms,
+        'comment' : comment,
     })
 
 def room(request, pk):
     rooms = get_object_or_404(Room, pk=pk)
 
+    form = BookingForm(instance=rooms)
+
+    if request.method == "POST":
+
+        form = BookingForm(request.POST, instance=rooms)
+
+        if form.is_valid() and not rooms.is_booked:
+            bookmodel = form.save(commit=False)
+            bookmodel.is_booked = True
+            bookmodel.save()
+            messages.success(request, "Đặt phòng thành công!")
+
+            return redirect("homepage")
+        else:
+            messages.error(request, "Phòng không còn trống!!")
+            return redirect("homepage")
+
     return render(request, 'app1/room.html',{
         'rooms' : rooms,
+        'form' : form
     })
 
 @login_required(login_url='login')
@@ -156,7 +176,7 @@ def comment(request, pk):
             commentmodel.created_by = request.user
             commentmodel.hotel_id = pk
             commentmodel.save()
-            messages.success(request, "Bình luận thành cong(gay)!")
+            messages.success(request, "Bình luận thành cong!")
 
             return redirect("homepage")
 

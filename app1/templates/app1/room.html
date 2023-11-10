@@ -1,11 +1,17 @@
 {% extends 'app1/base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
     
 <div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Booking section</b></h2></div>
 
 <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 <br>
+
+<form method="POST" autocomplete="off">
+
+    {% csrf_token %}
 
 <div class="container p-3 rounded shadow-md" style=" background-color: #78C2AD;">
     <div class="row">
@@ -73,11 +79,14 @@
                     <h3><i class="fa-regular fa-calendar" style="color: #78C2AD;"></i></h3>
 
                     <hr style=" height: 3px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+
+
                     <div class="col">
 
                         <div class="container-fluid p-3 text-center rounded mx-auto px-auto">
                     
-                            <input type="date" class="form-control me-2 rounded-pill shadow text-center" style="min-height: 70px;">
+                            {{form.book_in|as_crispy_field}}
 
                             </div>
 
@@ -87,11 +96,12 @@
 
                         <div class="container-fluid p-3 text-center rounded mx-auto px-auto">
                     
-                            <input type="date" class="form-control me-2 rounded-pill shadow text-center" style="min-height: 70px;">
+                            {{form.book_out|as_crispy_field}}
     
                             </div>
 
                     </div>
+
 
                 </div>
 
@@ -103,7 +113,10 @@
 
     <div class="container d-flex justify-content-end">
 
-        <a class="btn btn-warning btn-lg" " type="button" href=""> Đặt phòng</a>
+        <button type="submit" class="btn btn-warning btn-lg"> 
+            Đặt phòng
+
+        </button>
 
     </div>
         
@@ -111,7 +124,7 @@
     <br>
 
 </div>
-
+</form>
 <br>
 
 <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
