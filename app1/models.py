@@ -27,9 +27,11 @@ class Room(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     book_in = models.DateField(default=datetime.date.today)
     book_out = models.DateField(default=datetime.date.today)
+    created_by = models.ForeignKey(User, related_name='user_book',on_delete=models.CASCADE,default=1)
 
     def __str__(self):
-        return self.name
+        return '%s-%s'%(self.name, self.created_by)
+    
 class Comment(models.Model):
     hotel = models.ForeignKey(Hotel, related_name="comments", on_delete=models.CASCADE)
     body = models.TextField()

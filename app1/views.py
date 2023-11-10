@@ -135,6 +135,7 @@ def room(request, pk):
         if form.is_valid() and not rooms.is_booked:
             bookmodel = form.save(commit=False)
             bookmodel.is_booked = True
+            bookmodel.created_by = request.user
             bookmodel.save()
             messages.success(request, "Đặt phòng thành công!")
 
