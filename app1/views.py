@@ -184,3 +184,10 @@ def comment(request, pk):
     context = {'form': form}
 
     return render(request, 'app1/comment.html', context=context)
+
+def bookinfo(request):
+    rooms = Room.objects.filter()
+
+    return render(request, 'app1/bookinfo.html',{
+        'rooms' : rooms,
+    })
