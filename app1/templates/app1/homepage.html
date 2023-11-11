@@ -2,6 +2,13 @@
 
 {% block content %}
 
+<<<<<<< HEAD
+<br>
+
+<h4> Hi, {{user}}! 👋 </h4>
+
+=======
+>>>>>>> 83ad1b5d3e275e830cd58c0ede9074d1a5f8d2ed
     <br>
 
     <div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Hotel booking</b></h2></div>
@@ -9,9 +16,15 @@
     <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
     <br>
 
+<<<<<<< HEAD
+    <div class="container p-5">
+        <div class="mx-auto d-block">
+          <img src="https://hoteldel.com/wp-content/uploads/2021/03/hotel-del-coronado-views-suite-K1TOS1-K1TOJ1-1600x1000-1.jpg" class=" rounded shadow-lg" style="width: 100%; height: 380px; object-fit: cover" alt="">
+=======
     <div class="container p-5";">
         <div class="mx-auto d-block">
           <img src="https://hoteldel.com/wp-content/uploads/2021/03/hotel-del-coronado-views-suite-K1TOS1-K1TOJ1-1600x1000-1.jpg" class=" rounded" style="width: 100%; height: 380px; object-fit: cover" alt="">
+>>>>>>> 83ad1b5d3e275e830cd58c0ede9074d1a5f8d2ed
         </div>
       </div>
 
@@ -20,6 +33,39 @@
 
     <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 
+<<<<<<< HEAD
+    <br>
+
+    <div class="container text-center">
+        <div class="row row-cols-3 row-gap-5 col-gap-5">
+          {% for hotel in hotels|slice:"0:6" %}
+                    <div>
+                        <a href="{% url 'detail' hotel.id %}">
+                            <div class="cards">
+                                {% if hotel.image %}
+                                <img src="{{hotel.image.url }}" class="rounded shadow-lg" style="width: 200px; height: 250px; object-fit: cover">
+                                {% endif %}
+                            </div>
+    
+                            <div class="p-6 bg-white rounded-b-xl">
+                                <br>
+                                <h2 class="text-2xl hotelname">{{ hotel.name }}</h2>
+                            </div>
+                        </a>
+                    </div>
+          {% endfor %}
+          <br>
+          <div class="container text-center"><a class="btn btn-primary btn-lg" type="button" href="{% url 'search' %}"> Xem thêm </a>
+          </div>
+        </div>
+      </div>
+    <br>
+    <br>
+
+    <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+    <br>
+=======
     <div class="container text-center p-5">
         <div class="row row-cols-3 row-gap-5 col-gap-5">
           <div class="col"><img src="https://pix8.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?ca=6&ce=1&s=1024x768" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
@@ -31,6 +77,7 @@
         </div>
       </div>
     <br>
+>>>>>>> 83ad1b5d3e275e830cd58c0ede9074d1a5f8d2ed
 
     <div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Popular destinations</b></h2></div>
 
@@ -50,11 +97,27 @@
       </div>
 
     <br>
+<<<<<<< HEAD
+
+    <div class="container-fluid text-center"><h3 style="color: #78C2AD;"><b>Search your destination!</b></h3></div>
+
+=======
+>>>>>>> 83ad1b5d3e275e830cd58c0ede9074d1a5f8d2ed
     
     <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 
     <br>
 
+<<<<<<< HEAD
+    <div class="container-fluid p-4 rounded" style=" background-color: #78C2AD;">            
+
+      <form class="d-flex mx-auto text-center" style="max-width: 500px;" role="search"method="get" action="{% url 'search' %}">
+        <input name="query" class="form-control me-2 rounded-pill shadow-sm" type="search" autocomplete="off" placeholder="Tìm kiếm" aria-label="Search" type="text" value="{{ query }}">
+        <button class="btn btn-light btn-outline-success rounded-pill shadow-sm" type="submit">Search</button>
+      </form> 
+
+  </div>
+=======
     <div class="container-fluid p-5 rounded" style=" background-color: #78C2AD;">
     
       <div class="container-fluid p-2" style=" background-color: #f6f6f6; border-radius: 5px;">
@@ -64,12 +127,16 @@
         </div>
 
     </div>
+>>>>>>> 83ad1b5d3e275e830cd58c0ede9074d1a5f8d2ed
 
     <br>
 
     <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 
+<<<<<<< HEAD
+=======
     <h5> Xin chào, {{user}}! 👋 </h5>
+>>>>>>> 83ad1b5d3e275e830cd58c0ede9074d1a5f8d2ed
 
     
 

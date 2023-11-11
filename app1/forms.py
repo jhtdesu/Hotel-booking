@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth.models import User
 
 from django import forms
+from .models import Room, Comment
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.forms.widgets import PasswordInput, TextInput
@@ -33,4 +34,16 @@ class Information(UserChangeForm):
     class Meta:
         model = User
         fields = ( 'email', 'first_name', 'last_name')
-    
+
+class BookingForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Room
+        fields = ['book_in', 'book_out']
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['body',]

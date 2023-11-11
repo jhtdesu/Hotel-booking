@@ -1,0 +1,36 @@
+.cards {
+    transition: all 0.3s;
+}
+
+.cards:hover {
+    transform: scale(1.15);
+}
+
+.btn {
+    transition: all 0.3s;
+}
+
+.navtitle {
+    transition: all 0.3s;
+}
+
+.navtitle:hover {
+    color: aquamarine;
+}
+
+.hotelname {
+    transition: all 0.3s;
+}
+
+.hotelname:hover {
+    transform: scale(1.15);
+}
+
+.nav-item {
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.nav-item:hover {
+    transform: scale(1.10);
+}
