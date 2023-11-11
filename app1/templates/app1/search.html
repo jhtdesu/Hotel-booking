@@ -1,0 +1,62 @@
+{% extends 'app1/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <br>
+
+    <div>
+        <div class="container-fluid p-4 rounded" style=" background-color: #78C2AD;">
+            
+            <div class="row">
+                <div class="col-5">
+                    <form class="d-flex mx-auto text-center" style="max-width: 500px;" role="search"method="get" action="{% url 'search' %}">
+                        <input name="query" class="form-control me-2 rounded-pill shadow-sm" type="search" autocomplete="off" placeholder="Tìm kiếm" aria-label="Search" type="text" value="{{ query }}">
+                        <button class="btn btn-light btn-outline-success rounded-pill shadow-sm" type="submit">Search</button>
+                      </form> 
+                </div>
+                <div class="col">        
+                    <a href="{% url 'search' %}" class="btn btn-light btn-outline-danger rounded-pill shadow-sm">Clear filter</a>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+        <br>
+
+        <div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Hotels</b></h2></div>
+
+        <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+        <br>
+
+        <div class="container text-center">
+            <div class="row row-cols-3 row-gap-5 col-gap-5">
+            
+                {% for hotel in hotels %}
+                    <div class="cards rounded p-5">
+                        <a href="{% url 'detail' hotel.id %}">
+                            <div>
+                                {% if hotel.image %}
+                                <img src="{{hotel.image.url }}" class="rounded shadow-lg" style="width: 200px; height: 250px; object-fit: cover">
+                                {% endif %}
+                            </div>
+    
+                            <div class="p-6 bg-white rounded-b-xl">
+                                <h4 class="text-2xl hotelname">{{ hotel.adress }}</h4>
+                            </div>
+
+                            <div class="p-6 bg-white rounded-b-xl">
+                                <h2 class="text-2xl hotelname">{{ hotel.name }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <br>
+        <br>
+{% endblock %}

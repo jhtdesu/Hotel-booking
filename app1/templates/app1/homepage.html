@@ -1,0 +1,149 @@
+{% extends 'app1/base.html' %}
+
+{% block content %}
+
+<<<<<<< HEAD
+<br>
+
+<h4> Hi, {{user}}! 👋 </h4>
+
+=======
+>>>>>>> 83ad1b5d3e275e830cd58c0ede9074d1a5f8d2ed
+    <br>
+
+    <div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Hotel booking</b></h2></div>
+
+    <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+    <br>
+
+<<<<<<< HEAD
+    <div class="container p-5">
+        <div class="mx-auto d-block">
+          <img src="https://hoteldel.com/wp-content/uploads/2021/03/hotel-del-coronado-views-suite-K1TOS1-K1TOJ1-1600x1000-1.jpg" class=" rounded shadow-lg" style="width: 100%; height: 380px; object-fit: cover" alt="">
+=======
+    <div class="container p-5";">
+        <div class="mx-auto d-block">
+          <img src="https://hoteldel.com/wp-content/uploads/2021/03/hotel-del-coronado-views-suite-K1TOS1-K1TOJ1-1600x1000-1.jpg" class=" rounded" style="width: 100%; height: 380px; object-fit: cover" alt="">
+>>>>>>> 83ad1b5d3e275e830cd58c0ede9074d1a5f8d2ed
+        </div>
+      </div>
+
+    <br>
+    <div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Popular Hotels</b></h2></div>
+
+    <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+<<<<<<< HEAD
+    <br>
+
+    <div class="container text-center">
+        <div class="row row-cols-3 row-gap-5 col-gap-5">
+          {% for hotel in hotels|slice:"0:6" %}
+                    <div>
+                        <a href="{% url 'detail' hotel.id %}">
+                            <div class="cards">
+                                {% if hotel.image %}
+                                <img src="{{hotel.image.url }}" class="rounded shadow-lg" style="width: 200px; height: 250px; object-fit: cover">
+                                {% endif %}
+                            </div>
+    
+                            <div class="p-6 bg-white rounded-b-xl">
+                                <br>
+                                <h2 class="text-2xl hotelname">{{ hotel.name }}</h2>
+                            </div>
+                        </a>
+                    </div>
+          {% endfor %}
+          <br>
+          <div class="container text-center"><a class="btn btn-primary btn-lg" type="button" href="{% url 'search' %}"> Xem thêm </a>
+          </div>
+        </div>
+      </div>
+    <br>
+    <br>
+
+    <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+    <br>
+=======
+    <div class="container text-center p-5">
+        <div class="row row-cols-3 row-gap-5 col-gap-5">
+          <div class="col"><img src="https://pix8.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?ca=6&ce=1&s=1024x768" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
+          <div class="col"><img src="https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
+          <div class="col"><img src="https://www.theknot.com/tk-media/images/9a506749-95e9-47cf-857e-5374f2205b93~rs_768.h" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
+          <div class="col"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/25/ce/ea/kingsford-hotel-manila.jpg?w=1200&h=-1&s=1" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
+          <div class="col"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/488042945.jpg?k=775534679a4e00703c8c40aaeba394c5316ea249650df98bfe958956752e4c4d&o=&hp=1" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
+          <div class="col"><img src="https://www.richmondehotels.com.ph/wp-content/uploads/2021/09/ortigas_banner.jpg" style="max-width: 200px; height: 250px; object-fit: cover" class="rounded" alt=""></div>
+        </div>
+      </div>
+    <br>
+>>>>>>> 83ad1b5d3e275e830cd58c0ede9074d1a5f8d2ed
+
+    <div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Popular destinations</b></h2></div>
+
+    <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+    <div class="container text-center p-5 ">
+        <div class="row row-cols-auto">
+          <div class="col"><img src="https://www.planetware.com/photos-large/VIE/vietnam-halong-bay.jpg" class="rounded-circle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""></div>
+          <div class="col"><img src="https://image-en.nhandan.vn/w800/Uploaded/2023/aslxvtxwtys/2023_03_31/vietnam-2762.jpg" class="rounded-circle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""></div>
+          <div class="col"><img src="https://cdnimgen.vietnamplus.vn/uploaded/wbxx/2021_10_25/phocohoian12.jpg" class="rounded-circle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""></div>
+          <div class="col"><img src="https://image.vietnamnews.vn/uploadvnnews/Article/2023/3/8/270447_4475075626262732_phongnha.jpg" class="rounded-circle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""></div>
+          <div class="col"><img src="https://www.planetware.com/wpimages/2020/04/vietnam-best-places-to-visit-my-son.jpg" class="rounded-circle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""></div>
+          <div class="col"><img src="https://kyorktravel.com/vn/userfiles/mobile/slide_1_mobile.jpg" class="rounded-circle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""></div>
+          <div class="col"><img src="https://vir.com.vn/stores/news_dataimages/hung/052021/15/18/in_article/vietnam-a-safe-destination-for-development-of-fdi.jpg" class="rounded-circle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""></div>
+          <div class="col"><img src="https://d1bv4heaa2n05k.cloudfront.net/user-images/1527666431501/shutterstock-1027928194_main_1527666482525.jpeg" class="rounded-circle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""></div>
+        </div>
+      </div>
+
+    <br>
+<<<<<<< HEAD
+
+    <div class="container-fluid text-center"><h3 style="color: #78C2AD;"><b>Search your destination!</b></h3></div>
+
+=======
+>>>>>>> 83ad1b5d3e275e830cd58c0ede9074d1a5f8d2ed
+    
+    <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+    <br>
+
+<<<<<<< HEAD
+    <div class="container-fluid p-4 rounded" style=" background-color: #78C2AD;">            
+
+      <form class="d-flex mx-auto text-center" style="max-width: 500px;" role="search"method="get" action="{% url 'search' %}">
+        <input name="query" class="form-control me-2 rounded-pill shadow-sm" type="search" autocomplete="off" placeholder="Tìm kiếm" aria-label="Search" type="text" value="{{ query }}">
+        <button class="btn btn-light btn-outline-success rounded-pill shadow-sm" type="submit">Search</button>
+      </form> 
+
+  </div>
+=======
+    <div class="container-fluid p-5 rounded" style=" background-color: #78C2AD;">
+    
+      <div class="container-fluid p-2" style=" background-color: #f6f6f6; border-radius: 5px;">
+
+        <h3>test</h3>
+
+        </div>
+
+    </div>
+>>>>>>> 83ad1b5d3e275e830cd58c0ede9074d1a5f8d2ed
+
+    <br>
+
+    <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+<<<<<<< HEAD
+=======
+    <h5> Xin chào, {{user}}! 👋 </h5>
+>>>>>>> 83ad1b5d3e275e830cd58c0ede9074d1a5f8d2ed
+
+    
+
+        </tbody>
+
+
+    </table>
+
+
+{% endblock %}
