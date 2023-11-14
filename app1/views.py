@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-from app1.models import Hotel, Room, Comment
+from app1.models import Hotel, Room, Comment, Booking
 from django.shortcuts import render, get_object_or_404
 from .models import Room
 from django.db.models import Q
@@ -123,42 +123,6 @@ def detail(request, pk):
         'comment' : comment,
     })
 
-def room(request, pk):
-    rooms = get_object_or_404(Room, pk=pk)
-
-    form = BookingForm(instance=rooms)
-
-    if request.method == "POST":
-
-        form = BookingForm(request.POST, instance=rooms)
-
-        if form.is_valid() and not rooms.is_booked:
-            bookmodel = form.save(commit=False)
-            bookmodel.is_booked = True
-            bookmodel.created_by = request.user
-            bookmodel.save()
-            messages.success(request, "Đặt phòng thành công!")
-
-            return redirect("homepage")
-        
-        elif form.is_valid() and rooms.is_booked:
-            bookmodel = form.save(commit=False)
-            bookmodel.is_booked = False
-            bookmodel.created_by = request.user
-            bookmodel.save()
-            messages.success(request, "Hủy phòng thành công!")
-
-            return redirect("homepage")
-
-
-        else:
-            messages.error(request, "Phòng không còn trống!!")
-            return redirect("homepage")
-
-    return render(request, 'app1/room.html',{
-        'rooms' : rooms,
-        'form' : form
-    })
 
 @login_required(login_url='login')
 def list(request):
@@ -197,8 +161,41 @@ def comment(request, pk):
     return render(request, 'app1/comment.html', context=context)
 
 def bookinfo(request):
-    rooms = Room.objects.filter()
+    bookings = Booking.objects.filter()
 
     return render(request, 'app1/bookinfo.html',{
+        'bookings' : bookings,
+    })
+
+def pay(request):
+    rooms = Room.objects.filter()
+
+    return render(request, 'app1/pay.html',{
         'rooms' : rooms,
+    })
+def room(request, pk):
+    rooms = get_object_or_404(Room, pk=pk)
+    form = BookingForm(request.POST, instance=rooms)
+    if request.method =="POST":
+        
+        check_in = request.POST.get('check_in')
+        check_out = request.POST.get('check_out')
+        case_1 = Booking.objects.filter(room = rooms, check_in__lte=check_in, check_out__gte=check_in).exists()
+        case_2 = Booking.objects.filter(room = rooms, check_in__lte=check_out, check_out__gte=check_out).exists()
+        case_3 = Booking.objects.filter(room = rooms, check_in__gte=check_in, check_out__lte=check_out).exists()
+        if(case_1 or case_2 or case_3):
+            messages.error(request, "Loi")
+        else:    
+            rooms = Room.objects.filter()
+            booking = Booking(
+                check_in=check_in,
+                check_out= check_out,  
+                created_by=request.user,
+                room_id= pk,
+            )
+            booking.save()
+            return redirect("pay")
+    return render(request, 'app1/room.html',{
+        'rooms' : rooms,
+        'form' : form
     })

@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth.models import User
 
 from django import forms
-from .models import Room, Comment
+from .models import Room, Comment, Booking
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.forms.widgets import PasswordInput, TextInput
@@ -35,15 +35,22 @@ class Information(UserChangeForm):
         model = User
         fields = ( 'email', 'first_name', 'last_name')
 
-class BookingForm(forms.ModelForm):
+# class BookingForm(forms.ModelForm):
 
-    class Meta:
+#     class Meta:
 
-        model = Room
-        fields = ['book_in', 'book_out']
+#         model = Room
+#         fields = ['book_in', 'book_out']
 
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['body',]
+
+class BookingForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Booking
+        fields = ['check_in', 'check_out']

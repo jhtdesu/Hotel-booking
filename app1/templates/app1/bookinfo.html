@@ -1,23 +1,21 @@
 {% extends 'app1/base.html' %}
 {% block content %}
 
-    {% for rooms in rooms %}
+    {% for bookings in bookings %}
 
-        {% if rooms.created_by == user %}
-        
-            {% if rooms.is_booked == True %}
+        {% if bookings.created_by == user %}
+            
 
                 <div class="container text-center">
-                    <a href="{% url 'room' pk=rooms.pk %}"target="_blank">
+                    <a href="{% url 'room' pk=bookings.room.pk %}"target="_blank">
                         
                         <div class="p-6 bg-white rounded-b-xl">
                             <br>
-                            <h2 class="text-2xl hotelname"># {{ rooms.name }}</h2>
+                            <h2 class="text-2xl hotelname"># {{ bookings.room }}</h2>
                         </div>
                     </a>
                 </div>
 
-            {% endif %}
 
         {% endif %}
 

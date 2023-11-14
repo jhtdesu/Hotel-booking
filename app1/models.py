@@ -27,7 +27,7 @@ class Room(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     book_in = models.DateField(default=datetime.date.today)
     book_out = models.DateField(default=datetime.date.today)
-    created_by = models.ForeignKey(User, related_name='user_book',on_delete=models.CASCADE,default=1)
+    created_by = models.ForeignKey(User, related_name='admin',on_delete=models.CASCADE,default=1)
 
     def __str__(self):
         return '%s-%s'%(self.name, self.created_by)
@@ -39,3 +39,14 @@ class Comment(models.Model):
     created_by = models.ForeignKey(User, related_name='user_comments',on_delete=models.CASCADE)
     def __str__(self):
         return '%s-%s'%(self.hotel.name,self.created_by)
+
+class Booking(models.Model):
+    room = models.ForeignKey(Room, related_name="room_book", on_delete=models.CASCADE)
+    check_in = models.DateField()
+    check_out = models.DateField()
+    created_by = models.ForeignKey(User, related_name="user_book",on_delete=models.CASCADE)
+    def __str__(self):
+        return 'book from %s to %s in room %s at hotel %s by %s'%(self.check_in,self.check_out,self.room.name,self.room.hotel.name,self.created_by)
+    # def save(self):
+    #     if(self.check_in <= self.check_out):
+    #         return super().save()
