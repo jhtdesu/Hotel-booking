@@ -1,11 +1,12 @@
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth.models import User
-
+from django.forms import DateInput
 from django import forms
 from .models import Room, Comment, Booking
-
+from django.contrib.admin.widgets import AdminDateWidget
 from django.contrib.auth.forms import AuthenticationForm
 from django.forms.widgets import PasswordInput, TextInput
+
 
 # - Register/Create a user
 
@@ -35,13 +36,8 @@ class Information(UserChangeForm):
         model = User
         fields = ( 'email', 'first_name', 'last_name')
 
-# class BookingForm(forms.ModelForm):
-
-#     class Meta:
-
-#         model = Room
-#         fields = ['book_in', 'book_out']
-
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -51,6 +47,7 @@ class CommentForm(forms.ModelForm):
 class BookingForm(forms.ModelForm):
 
     class Meta:
-
+        widgets = {'check_in':DateInput(),'check_out':DateInput()
+        }
         model = Booking
         fields = ['check_in', 'check_out']

@@ -174,6 +174,7 @@ def pay(request):
         'rooms' : rooms,
     })
 def room(request, pk):
+    bookings = Booking.objects.filter()
     rooms = get_object_or_404(Room, pk=pk)
     form = BookingForm(request.POST, instance=rooms)
     if request.method =="POST":
@@ -193,9 +194,11 @@ def room(request, pk):
                 created_by=request.user,
                 room_id= pk,
             )
+            rooms.is_booked = True
             booking.save()
             return redirect("pay")
     return render(request, 'app1/room.html',{
         'rooms' : rooms,
-        'form' : form
+        'form' : form,
+        'bookings' : bookings,
     })

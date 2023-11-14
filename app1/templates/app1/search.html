@@ -5,6 +5,12 @@
 {% block content %}
     <br>
 
+    <div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Tìm kiếm</b></h2></div>
+
+    <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+    <br>
+
     <div>
         <div class="container-fluid p-4 rounded" style=" background-color: #78C2AD;">
             
@@ -12,22 +18,21 @@
                 <div class="col-5">
                     <form class="d-flex mx-auto text-center" style="max-width: 500px;" role="search"method="get" action="{% url 'search' %}">
                         <input name="query" class="form-control me-2 rounded-pill shadow-sm" type="search" autocomplete="off" placeholder="Tìm kiếm" aria-label="Search" type="text" value="{{ query }}">
-                        <button class="btn btn-light btn-outline-success rounded-pill shadow-sm" type="submit">Search</button>
+                        <button class="btn btn-light btn-outline-success rounded-pill shadow-sm" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                       </form> 
                 </div>
                 <div class="col">        
-                    <a href="{% url 'search' %}" class="btn btn-light btn-outline-danger rounded-pill shadow-sm">Clear filter</a>
+                    <a href="{% url 'search' %}" class="btn btn-light btn-outline-danger rounded-pill shadow-sm"><i class="fa-solid fa-broom"></i></a>
                 </div>
             </div>
         </div>
 
         <br>
 
-        <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 
         <br>
 
-        <div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Hotels</b></h2></div>
+        <div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Danh sách khách sạn</b></h2></div>
 
         <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 
@@ -57,6 +62,8 @@
                 {% endfor %}
             </div>
         </div>
-        <br>
+
+        <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
         <br>
 {% endblock %}
