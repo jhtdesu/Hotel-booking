@@ -15,6 +15,7 @@ from .models import Room
 from django.db.models import Q
 from datetime import datetime
 import datetime
+from django.db import IntegrityError
 def home(request):
 
     return render(request, 'app1/index.html')
@@ -117,7 +118,6 @@ def detail(request, pk):
     hotel = get_object_or_404(Hotel, pk=pk)
     rooms = Room.objects.filter(hotel__name=hotel.name)
     comment = Comment.objects.filter(hotel__name=hotel.name)
-
     return render(request, 'app1/detail.html',{
         'hotel': hotel,
         'rooms' : rooms,
@@ -147,15 +147,19 @@ def comment(request, pk):
     if request.method == "POST":
 
         form = CommentForm(request.POST)
-
+        
         if form.is_valid():
             commentmodel = form.save(commit=False)
             commentmodel.created_by = request.user
             commentmodel.hotel_id = pk
-            commentmodel.save()
-            messages.success(request, "Bình luận thành cong!")
+            try: 
+                commentmodel.save()
+                messages.success(request, "Bình luận thành công!")
+                return redirect("homepage")
+            except IntegrityError as e: messages.error(request, "Bạn chỉ có thể đánh giá 1 lần đối với mỗi khách sạn")
+            
 
-            return redirect("homepage")
+            
 
     context = {'form': form}
 

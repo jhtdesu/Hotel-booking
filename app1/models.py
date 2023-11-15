@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 import datetime
+from django.core.validators import MaxValueValidator,MinValueValidator
 # Create your models here.
 Book_choices = ( 
     ("Còn hạn", "Còn hạn"), 
@@ -25,7 +26,14 @@ class Hotel(models.Model):
     description = models.TextField(blank=True, null=True)
     adress = models.TextField(blank=True, null=True)
     location = models.TextField(blank=True, null=True)
-    rating = models.IntegerField(default=1)
+    rating_average = models.FloatField(default=0)
+    review_count = models.IntegerField(default=0)
+    def canculator_rate(self):
+        comments=self.comments.all()
+        self.rating_average = comments.aggregate(models.Avg('Đánh_giá')).get('Đánh_giá__avg')
+        self.review_count = comments.count()
+        self.save(update_fields=['rating_average','review_count'])
+
     class Meta:
         ordering = ('name',)
 
@@ -51,9 +59,14 @@ class Comment(models.Model):
     Nhận_xét = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, related_name='user_comments',on_delete=models.CASCADE)
-    Đánh_giá = models.CharField(max_length=10, choices=Rate_choices,default=5)
+    Đánh_giá = models.FloatField(validators=[MinValueValidator(1),MaxValueValidator(5)],default=5)
+    class Meta:
+        unique_together = ['created_by', 'hotel']
     def __str__(self):
         return '%s-%s'%(self.hotel.name,self.created_by)
+    def save(self, *args, **kwargs):
+        super(Comment, self).save(*args, **kwargs)
+        self.hotel.canculator_rate()
 
 class Booking(models.Model):
     room = models.ForeignKey(Room, related_name="room_book", on_delete=models.CASCADE)
