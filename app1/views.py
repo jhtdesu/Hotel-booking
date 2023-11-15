@@ -41,8 +41,6 @@ def register(request):
     return render(request, 'app1/register.html', context=context)
 
 
-
-
 def login(request):
 
     form = LoginForm()
@@ -67,6 +65,7 @@ def login(request):
     context = {'form':form}
 
     return render(request, 'app1/login.html', context=context)
+
 @login_required(login_url='login')
 def user_logout(request):
 
@@ -76,14 +75,12 @@ def user_logout(request):
 
     return redirect("login")
 
-
+@login_required(login_url='login')
 def homepage(request):
     hotels = Hotel.objects.filter()
     return render(request, 'app1/homepage.html',{
         'hotels': hotels,
     })
-
-
 
 @login_required(login_url='login')
 def editinfo(request):
@@ -99,10 +96,12 @@ def editinfo(request):
             return redirect("homepage")
     context = {'form':form}
     return render(request, 'app1/editinfo.html', context=context)
+
 @login_required(login_url='login')
 def info(request):
    
     return render(request, 'app1/info.html')
+
 @login_required(login_url='login')
 def roomlist(request):
     rooms = Room.objects.filter(is_booked=False)[0:6]
@@ -112,6 +111,7 @@ def roomlist(request):
         'hotels':hotels,
         'rooms':rooms,
     })
+
 @login_required(login_url='login')
 def detail(request, pk):
     # room = get_object_or_404(Room, pk=pk)
@@ -128,6 +128,7 @@ def detail(request, pk):
 @login_required(login_url='login')
 def list(request):
     return render(request, 'app1/list.html')
+
 @login_required(login_url='login')
 def search(request):
     query = request.GET.get('query', '')
@@ -141,6 +142,7 @@ def search(request):
 
     })
 
+@login_required(login_url='login')
 def comment(request, pk):
     hotel = get_object_or_404(Hotel, pk=pk)
     form = CommentForm()
@@ -166,6 +168,7 @@ def comment(request, pk):
 
     return render(request, 'app1/comment.html', context=context)
 
+@login_required(login_url='login')
 def bookinfo(request):
     bookings = Booking.objects.filter()
 
@@ -173,6 +176,7 @@ def bookinfo(request):
         'bookings' : bookings,
     })
 
+@login_required(login_url='login')
 def pay(request):
     rooms = Room.objects.filter()
 
@@ -180,6 +184,7 @@ def pay(request):
         'rooms' : rooms,
     })
 
+@login_required(login_url='login')
 def room(request, pk):
     bookings = Booking.objects.filter()
     rooms = get_object_or_404(Room, pk=pk)
@@ -214,12 +219,14 @@ def room(request, pk):
         'bookings' : bookings,
     })
 
+@login_required(login_url='login')
 def cancel(request, pk):
     bookings = Booking.objects.get(pk = pk)
     bookings.delete()
     messages.success(request,"Hủy phòng thành công")
     return redirect("bookinfo")
 
+@login_required(login_url='login')
 def bookedroom(request,pk):
     bookings = Booking.objects.filter(pk = pk)
     rooms = Room.objects.filter(pk = pk)

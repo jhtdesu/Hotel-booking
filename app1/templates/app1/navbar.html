@@ -45,7 +45,7 @@
 
             <li class="nav-item">
   
-              <a class="nav-link" href="{% url 'search' %}">Danh sách phòng &nbsp; </a>
+              <a class="nav-link" href="{% url 'search' %}">Danh sách khách sạn &nbsp; </a>
   
             </li>
 
@@ -87,8 +87,13 @@
         
         
       </div>
+
+      
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
       <ul class="navbar-nav mx-auto">
+
+        {% if user.is_authenticated %}
 
         <li class="text-center">
   
@@ -105,10 +110,12 @@
         </li>
 
         &nbsp;     &nbsp;     &nbsp; 
+
+      {% endif %}
             
         <li>
         <form class="d-flex mx-auto text-center" style="max-width: 300px;" role="search"method="get" action="{% url 'search' %}">
-          <input name="query" class="form-control me-2 rounded-pill shadow" type="search" autocomplete="off" placeholder="Search" aria-label="Search" type="text" value="{{ query }}">
+          <input name="query" class="form-control me-2 rounded-pill shadow" type="search" autocomplete="off" placeholder="Tìm kiếm" aria-label="Search" type="text" value="{{ query }}">
           <button class="btn btn-light btn-outline-success rounded-pill shadow" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form> 
         </li>
