@@ -140,6 +140,7 @@ def search(request):
         'query': query,
 
     })
+
 def comment(request, pk):
     hotel = get_object_or_404(Hotel, pk=pk)
     form = CommentForm()
@@ -178,6 +179,7 @@ def pay(request):
     return render(request, 'app1/pay.html',{
         'rooms' : rooms,
     })
+
 def room(request, pk):
     bookings = Booking.objects.filter()
     rooms = get_object_or_404(Room, pk=pk)
@@ -211,13 +213,17 @@ def room(request, pk):
         'form' : form,
         'bookings' : bookings,
     })
+
 def cancel(request, pk):
     bookings = Booking.objects.get(pk = pk)
     bookings.delete()
     messages.success(request,"Hủy phòng thành công")
     return redirect("bookinfo")
+
 def bookedroom(request,pk):
-    bookings = Booking.objects.filter(id = pk)
+    bookings = Booking.objects.filter(pk = pk)
+    rooms = Room.objects.filter(pk = pk)
     return render(request, 'app1/bookedroom.html',{
-        'bookings' : bookings
+        'bookings' : bookings,
+        'rooms' : rooms,
     })

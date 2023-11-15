@@ -52,7 +52,7 @@ class Room(models.Model):
     created_by = models.ForeignKey(User, related_name='admin',on_delete=models.CASCADE,default=1)
 
     def __str__(self):
-        return '%s-%s'%(self.name, self.created_by)
+        return self.name
     
 class Comment(models.Model):
     hotel = models.ForeignKey(Hotel, related_name="comments", on_delete=models.CASCADE)
@@ -69,10 +69,10 @@ class Comment(models.Model):
         self.hotel.canculator_rate()
 
 class Booking(models.Model):
-    room = models.ForeignKey(Room, related_name="room_book", on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, related_name="rooms", on_delete=models.CASCADE)
     check_in = models.DateField()
     check_out = models.DateField()
-    created_by = models.ForeignKey(User, related_name="user_book",on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, related_name="user",on_delete=models.CASCADE)
     book_date = models.DateTimeField(auto_now_add=True)
     book_check = models.CharField(max_length= 20,choices=Book_choices)
     def __str__(self):
