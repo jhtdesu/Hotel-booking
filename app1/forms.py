@@ -42,7 +42,7 @@ class DateInput(forms.DateInput):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['body',]
+        fields = ['Đánh_giá','Nhận_xét']
 
 class BookingForm(forms.ModelForm):
 

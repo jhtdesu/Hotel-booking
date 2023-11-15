@@ -1,7 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 import datetime
 # Create your models here.
+Book_choices = ( 
+    ("Còn hạn", "Còn hạn"), 
+    ("Hết hạn", "Hết hạn"), 
+) 
+Rate_choices = (
+    ("1","1"),
+    ("1.5","1.5"),
+    ("2","2"),
+    ("2.5","2.5"),
+    ("3","3"),
+    ("3.5","3.5"),
+    ("4","4"),
+    ("4.5","4.5"),
+    ("5","5"),
+)
 class Hotel(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='hotel_images',blank=True,null=True)
@@ -25,8 +41,6 @@ class Room(models.Model):
     image = models.ImageField(upload_to='room_images',blank=True,null=True)
     is_booked = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    book_in = models.DateField(default=datetime.date.today)
-    book_out = models.DateField(default=datetime.date.today)
     created_by = models.ForeignKey(User, related_name='admin',on_delete=models.CASCADE,default=1)
 
     def __str__(self):
@@ -34,9 +48,10 @@ class Room(models.Model):
     
 class Comment(models.Model):
     hotel = models.ForeignKey(Hotel, related_name="comments", on_delete=models.CASCADE)
-    body = models.TextField()
+    Nhận_xét = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, related_name='user_comments',on_delete=models.CASCADE)
+    Đánh_giá = models.CharField(max_length=10, choices=Rate_choices,default=5)
     def __str__(self):
         return '%s-%s'%(self.hotel.name,self.created_by)
 
@@ -45,8 +60,14 @@ class Booking(models.Model):
     check_in = models.DateField()
     check_out = models.DateField()
     created_by = models.ForeignKey(User, related_name="user_book",on_delete=models.CASCADE)
+    book_date = models.DateTimeField(auto_now_add=True)
+    book_check = models.CharField(max_length= 20,choices=Book_choices)
     def __str__(self):
-        return 'book from %s to %s in room %s at hotel %s by %s'%(self.check_in,self.check_out,self.room.name,self.room.hotel.name,self.created_by)
+        if (datetime.datetime.now().date()>=self.check_in):
+            self.book_check = "Hết hạn"
+            self.save()
+        else: self.book_check = "Còn hạn" 
+        return 'book from %s to %s in room %s at hotel %s by %s at %s'%(self.check_in,self.check_out,self.room.name,self.room.hotel.name,self.created_by, self.book_date)
     # def save(self):
     #     if(self.check_in <= self.check_out):
     #         return super().save()

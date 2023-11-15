@@ -134,26 +134,13 @@
 
     <div class="container d-flex justify-content-end">
 
-        
-        {% if rooms.is_booked == True %}
 
-            {% if rooms.created_by == user %}
-
-                <button type="submit" class="btn btn-danger btn-lg"> 
-                    Hủy phòng
-
-                </button>
-
-            {% endif %}
-
-        {% else %}
 
             <button type="submit" class="btn btn-warning btn-lg"> 
                             Đặt phòng
 
                         </button>
 
-        {% endif %}
     </div>
         
 

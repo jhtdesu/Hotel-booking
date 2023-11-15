@@ -13,7 +13,8 @@ from app1.models import Hotel, Room, Comment, Booking
 from django.shortcuts import render, get_object_or_404
 from .models import Room
 from django.db.models import Q
-
+from datetime import datetime
+import datetime
 def home(request):
 
     return render(request, 'app1/index.html')
@@ -181,10 +182,13 @@ def room(request, pk):
         
         check_in = request.POST.get('check_in')
         check_out = request.POST.get('check_out')
+        ci = datetime.datetime.strptime(str(check_in),"%Y-%m-%d").date()
         case_1 = Booking.objects.filter(room = rooms, check_in__lte=check_in, check_out__gte=check_in).exists()
         case_2 = Booking.objects.filter(room = rooms, check_in__lte=check_out, check_out__gte=check_out).exists()
         case_3 = Booking.objects.filter(room = rooms, check_in__gte=check_in, check_out__lte=check_out).exists()
-        if(case_1 or case_2 or case_3):
+        if datetime.datetime.now().date()>=ci:
+            messages.error(request, "Ngay khong hop le")
+        elif(case_1 or case_2 or case_3):
             messages.error(request, "Loi")
         else:    
             rooms = Room.objects.filter()
@@ -192,6 +196,7 @@ def room(request, pk):
                 check_in=check_in,
                 check_out= check_out,  
                 created_by=request.user,
+                book_check="Còn hạn",
                 room_id= pk,
             )
             rooms.is_booked = True
@@ -201,4 +206,14 @@ def room(request, pk):
         'rooms' : rooms,
         'form' : form,
         'bookings' : bookings,
+    })
+def cancel(request, pk):
+    bookings = Booking.objects.get(pk = pk)
+    bookings.delete()
+    messages.success(request,"Hủy phòng thành công")
+    return redirect("bookinfo")
+def bookedroom(request,pk):
+    bookings = Booking.objects.filter(id = pk)
+    return render(request, 'app1/bookedroom.html',{
+        'bookings' : bookings
     })
