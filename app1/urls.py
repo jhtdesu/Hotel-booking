@@ -29,4 +29,5 @@ urlpatterns = [
     path('payment/<int:pk>/', views.CreateSessionStripeView,name='payment'),
     path("success/", views.success, name="success"),
     path("cancelpay/", views.cancelpay, name="cancelpay"),
+    path("stripe_webhook/",views.stripe_webhook,name="stripe_webhook")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
 from django.contrib.auth.models import User
-
+from django.http import HttpResponse
 from app1.models import Hotel, Room, Comment, Booking
 from django.shortcuts import render, get_object_or_404
 from .models import Room
@@ -18,6 +18,7 @@ import datetime
 import stripe
 from django.db import IntegrityError
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 stripe.api_key = settings.STRIPE_SECRET_KEY
 def home(request):
 
@@ -240,30 +241,31 @@ def bookedroom(request,pk):
     })
 def CreateSessionStripeView(request,pk):
     bookings = Booking.objects.get(pk = pk)
+    
     pay_session = stripe.checkout.Session.create(
-        payment_method_types = ["card"],
-        line_items =[
-            {
-                "price_data":{
-                    "currency":"vnd",
-                    "unit_amount":int(bookings.room.price),
-                    "product_data":{
-                        "name":bookings.room.name,
-                        "description":bookings.room.description,
-                        "images":[
-                            f"{bookings.room.image}"
-                        ],
+            payment_method_types = ["card"],
+            line_items =[
+                {
+                    "price_data":{
+                        "currency":"vnd",
+                        "unit_amount":int(bookings.room.price),
+                        "product_data":{
+                            "name":bookings.room.name,
+                            "description":bookings.room.description,
+                            "images":[
+                                f"{bookings.room.image}"
+                            ],
+                        },
                     },
-                },
-                "quantity":1,
-            }
-        ],
-        metadata={"product_id":bookings.pk},
-        mode = "payment",
-        success_url = "http://127.0.0.1:8000/success",
-        cancel_url = "http://127.0.0.1:8000/cancelpay"
+                    "quantity":1,
+                }
+            ],
+            metadata={"product_id":bookings.pk},
+            mode = "payment",
+            success_url = "http://127.0.0.1:8000/success",
+            cancel_url = "http://127.0.0.1:8000/cancelpay"
     ) 
-    return redirect(pay_session.url)
+    return redirect(pay_session.url)    
 def cancelpay(request):
     messages.error(request, "Thanh toán thất bại")
     return render(request,'app1/homepage.html')
@@ -273,3 +275,21 @@ def success(request):
     # booking.save()
     messages.success(request, "Thanh toán thành công")
     return render(request, 'app1/homepage.html')
+@csrf_exempt
+def stripe_webhook(request):
+    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+    payload = request.body
+    sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
+    event = None
+    try: event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
+    except ValueError as e:
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        return HttpResponse(status=400)
+    if event["type"] == "checkout.session.completed":
+        session = event["data"]["object"]
+        product_id = session["metadata"]["product_id"]
+        bookings = Booking.objects.get(id=int(product_id))
+        bookings.pay_status = True
+        bookings.save()
+    return HttpResponse(status=200)
