@@ -1,29 +1,37 @@
 {% extends 'app1/base.html' %}
 {% block content %}
 
+<div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Danh sách phòng đã đặt</b></h2></div>
+
+<hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+<br>
+
     {% for bookings in bookings %}
 
         {% if bookings.created_by == request.user %}
-            
 
-                <div class="container text-center">
-                    <a href="{% url 'bookedroom' bookings.pk %}">
+            <div class="container bookinfo rounded">
+
+                <a href="{% url 'bookedroom' bookings.pk %}" style="text-decoration: none;">
+                    <div class="container text-center">
+                                                    
+                            <div class="rounded-b-xl">
+                                <br>
+                                <h3 class="text-white">Phòng {{ bookings.room.name }} từ {{bookings.check_in}} đến {{bookings.check_out}}</h3>
+                                <br>
+                            </div>
                         
-                        <div class="p-6 bg-white rounded-b-xl">
-                            <br>
-                            <h3 class="text-2xl"># {{ bookings.room.name }} by {{ bookings.created_by}} từ {{bookings.check_in}} đến {{bookings.check_out}}</h>
-                            <h4>Trạng thái: {{bookings.book_check}}</h4>
-                            <a href="{% url 'payment' bookings.pk %}"> <button type="submit" class="btn btn-warning btn-lg"> 
-                                Thanh toán
-    
-                            </button></a>
-                        </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
 
+            </div>
 
+            <br>
         {% endif %}
 
     {% endfor %}
 
+<hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;"> 
+    
 {% endblock %}

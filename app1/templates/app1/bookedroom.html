@@ -16,10 +16,20 @@
                         <br>
                         <br>
     
-                            <h3 style="color: red;">Giá Phòng</h3>
-                            <h3>{{bookings.room.price}} $</h3>
-    
-    
+                            <h3 class="text-danger">Giá Phòng</h3>
+                            <h3>{{bookings.room.price}} đ</h3>
+                            <br>
+                            <h3 class="text-danger">Trạng thái</h3>
+
+                            {% if bookings.pay_status == True %}
+
+                            <h5>Đã thanh toán</h3>
+
+                            {% else %}
+
+                            <h5>Chưa thanh toán</h5>
+
+                            {% endif %}
     
                     </div>
     
@@ -52,31 +62,49 @@
     
                     <div class="row">
     
-                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 97%; background-color: aliceblue;" >
+                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="height: 370px; width: 97%; background-color: aliceblue;" >
                         
-                            <h4>Phòng đã bị đặt</h4>
+                            <h4>Lịch đặt phòng</h4>
                             <hr style=" height: 3px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
     
-                                <div class="row row-cols-3 row-gap-4 p-3 text-center" style=" background-color: #D9D9D9;">
+                                <div class="p-3 text-center rounded" style=" background-color: #D9D9D9;">
     
     
                                             <div class="container rounded px-auto mx-auto text-center p-2" style="background-color: aliceblue;">
     
-                                                <h6 style="color: red;">{{ bookings.check_in }}</h6>
+                                                <h6 class="text-danger">{{ bookings.check_in }}</h6>
                                                 <h6>tới</h6>
-                                                <h6 style="color: red;">{{ bookings.check_out }}</h6>
+                                                <h6 class="text-danger">{{ bookings.check_out }}</h6>
     
                                             </div>
-                                            &nbsp;
                                     
 
     
                                 </div>
+
+                                <br>
+
+                                <div class="p-3 text-center rounded" style="height: 125px; background-color: #D9D9D9;">
+    
+    
+                                    <div class="container rounded px-auto mx-auto text-center p-2" style="background-color: aliceblue;">
+
+                                        &nbsp;
+                                        <h6 class="text-info">Phòng chỉ hợp lệ sau khi bạn đã thanh toán</h6>
+                                        <h6 class="text-info">Sau khi thanh toán khi hủy phòng hãy liên hệ với nhân viên để hoàn lại tiền</h6>
+
+                                    </div>
+                                    &nbsp;
+                            
+
+
+                        </div>
     
                             </div>
     
                     </div>
     
+                    
                     <br>
     
         <br>
@@ -85,8 +113,18 @@
 
     <div class="d-flex justify-content-end">
 
+        {% if bookings.pay_status == True %}
+
         <a href="{% url 'cancel' bookings.pk %}"><button type="submit" class="btn btn-danger btn-lg"> Hủy Phòng </button></a>
-    
+
+        {% else %}
+
+        <a href="{% url 'cancel' bookings.pk %}"><button type="submit" class="btn btn-danger btn-lg"> Hủy Phòng </button></a>
+        &nbsp; &nbsp; 
+        <a href="{% url 'payment' bookings.pk %}"><button type="submit" class="btn btn-warning btn-lg"> Thanh Toán </button></a>
+        
+        {% endif %}
+
     </div>
 
     {% endfor %}

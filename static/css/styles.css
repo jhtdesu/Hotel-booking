@@ -61,3 +61,12 @@
 .room:hover {
     background-color: #A9A9A9;
 }
+
+.bookinfo {
+    transition: all 0.3s;
+    background-color: #78C2AD;
+}
+
+.bookinfo:hover {
+    filter: brightness(90%);
+}
