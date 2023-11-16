@@ -75,6 +75,7 @@ class Booking(models.Model):
     created_by = models.ForeignKey(User, related_name="user",on_delete=models.CASCADE)
     book_date = models.DateTimeField(auto_now_add=True)
     book_check = models.CharField(max_length= 20,choices=Book_choices)
+    pay_status = models.BooleanField(default=False)
     def __str__(self):
         if (datetime.datetime.now().date()>=self.check_in):
             self.book_check = "Hết hạn"

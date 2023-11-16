@@ -13,7 +13,10 @@
                             <br>
                             <h3 class="text-2xl"># {{ bookings.room.name }} by {{ bookings.created_by}} từ {{bookings.check_in}} đến {{bookings.check_out}}</h>
                             <h4>Trạng thái: {{bookings.book_check}}</h4>
-                            
+                            <a href="{% url 'payment' bookings.pk %}"> <button type="submit" class="btn btn-warning btn-lg"> 
+                                Thanh toán
+    
+                            </button></a>
                         </div>
                     </a>
                 </div>

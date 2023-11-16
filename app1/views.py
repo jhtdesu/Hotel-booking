@@ -15,7 +15,10 @@ from .models import Room
 from django.db.models import Q
 from datetime import datetime
 import datetime
+import stripe
 from django.db import IntegrityError
+from django.conf import settings
+stripe.api_key = settings.STRIPE_SECRET_KEY
 def home(request):
 
     return render(request, 'app1/index.html')
@@ -212,7 +215,8 @@ def room(request, pk):
             )
             rooms.is_booked = True
             booking.save()
-            return redirect("pay")
+            return redirect("homepage")
+            messages.success(request, "Bạn đã đặt phòng thành công")
     return render(request, 'app1/room.html',{
         'rooms' : rooms,
         'form' : form,
@@ -234,3 +238,38 @@ def bookedroom(request,pk):
         'bookings' : bookings,
         'rooms' : rooms,
     })
+def CreateSessionStripeView(request,pk):
+    bookings = Booking.objects.get(pk = pk)
+    pay_session = stripe.checkout.Session.create(
+        payment_method_types = ["card"],
+        line_items =[
+            {
+                "price_data":{
+                    "currency":"vnd",
+                    "unit_amount":int(bookings.room.price),
+                    "product_data":{
+                        "name":bookings.room.name,
+                        "description":bookings.room.description,
+                        "images":[
+                            f"{bookings.room.image}"
+                        ],
+                    },
+                },
+                "quantity":1,
+            }
+        ],
+        metadata={"product_id":bookings.pk},
+        mode = "payment",
+        success_url = "http://127.0.0.1:8000/success",
+        cancel_url = "http://127.0.0.1:8000/cancelpay"
+    ) 
+    return redirect(pay_session.url)
+def cancelpay(request):
+    messages.error(request, "Thanh toán thất bại")
+    return render(request,'app1/homepage.html')
+def success(request):
+    # booking = Booking.objects.filter(pk = pk,instance=booking)
+    # booking.pay_status = True
+    # booking.save()
+    messages.success(request, "Thanh toán thành công")
+    return render(request, 'app1/homepage.html')
