@@ -70,3 +70,7 @@
 .bookinfo:hover {
     filter: brightness(90%);
 }
+
+.carousel-item {
+    transition: all 0.3s;
+}
