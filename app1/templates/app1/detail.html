@@ -15,7 +15,7 @@
 
             <div class="row px-auto mx-auto">
                 
-                <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" width: 90%; background-color: aliceblue;">
+                <div class="container-fluid p-3 text-center rounded mx-auto px-auto shadow-lg" style=" width: 90%; background-color: aliceblue;">
 
                     {% if hotel.image %} 
                     <img src="{{ hotel.image.url }}" class="rounded shadow-lg" style="width: 200px; height: 250px; object-fit: cover;" alt="ảnh lỗi r huhu">
@@ -27,7 +27,7 @@
             </div>
             <br>
             <div class="row px-auto mx-auto">
-                <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" width: 90%; min-height: 200px; background-color: aliceblue;">
+                <div class="container-fluid p-3 text-center rounded mx-auto px-auto shadow-lg" style=" width: 90%; min-height: 200px; background-color: aliceblue;">
                 
 
                         <h3>Đánh giá</h3>
@@ -51,7 +51,7 @@
 
                 <div class="row">
 
-                    <div class="col-10 rounded p-2 px-auto mx-auto">
+                    <div class="col-10 rounded p-2 px-auto mx-auto rounded shadow-lg">
                         <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" background-color: aliceblue;" >
                     
                         <h2>{{ hotel.name }}</h2>
@@ -66,7 +66,7 @@
 
                 <div class="row">
 
-                    <div class="container p-3 text-center rounded mx-auto px-auto" style="width: 97%; min-height: 250px; background-color: aliceblue;" >
+                    <div class="container p-3 text-center rounded mx-auto px-auto shadow-lg" style="width: 97%; min-height: 250px; background-color: aliceblue;" >
                         
                         <h4>Mô tả</h4>
                         <hr style=" height: 3px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
@@ -94,7 +94,7 @@
 
                 <br>
 
-                <div class="row rounded text-center p-2 px-auto mx-auto" style=" background-color: aliceblue;">
+                <div class="row rounded text-center p-2 px-auto mx-auto shadow-lg" style=" background-color: aliceblue;">
                     {% for rooms in rooms %}
                     <div class="col">
 
@@ -147,8 +147,17 @@
 
         {% for comment in comment %}
 
-            <div class="col p-2 px-auto mx-auto">
-                <div class="p-3 border bg-light rounded" style="word-wrap: break-word;">{{comment.Đánh_giá|floatformat:1}} {{comment.Nhận_xét}}<p class="d-flex justify-content-end">by {{comment.created_by}}</p></div>
+            <div class="col p-2 px-auto mx-auto rounded shadow-lg">
+                <div class="p-3 border bg-light rounded" style="word-wrap: break-word;">
+
+                    <div class="rounded p-1 d-flex justify-content-center" style="width: 17%; background-color: #78C2AD;">
+                        <h6>{{comment.Đánh_giá|floatformat:1}}<i class="fa-solid fa-star" style="color: #fcff52;"></i></h6> 
+                    </div>
+
+                    {{comment.Nhận_xét}}
+                    <div class="d-flex justify-content-end"><p>bởi</p> &nbsp; <p class="text-info">{{comment.created_by}}</p></div>
+
+                </div>
             </div>
 
         {% endfor %}

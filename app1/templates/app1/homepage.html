@@ -4,7 +4,7 @@
 
 <br>
 
-<h4> Hi, {{user}}! 👋 </h4>
+<h4> Xin chào, {{user}}! 👋 </h4>
 
     <br>
 
@@ -13,7 +13,7 @@
     <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
     <br>
 
-    <div class="container p-5">
+    <div class="container p-5 rounded shadow-lg">
       <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -85,14 +85,14 @@
 
     <div class="container text-center p-5 " style="object-fit: cover;">
         <div class="row row-cols-auto">
-          <div class="col"><a href="{% url 'search' %}?query=Ha+Long" style="text-decoration: none;"><img src="https://www.planetware.com/photos-large/VIE/vietnam-halong-bay.jpg" class="rounded-circle hpcircle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Hạ Long</h4></a></div>
-          <div class="col"><a href="{% url 'search' %}?query=Da+Nang" style="text-decoration: none;"><img src="https://image-en.nhandan.vn/w800/Uploaded/2023/aslxvtxwtys/2023_03_31/vietnam-2762.jpg" class="rounded-circle hpcircle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Đà nẵng</h4></a></div>
-          <div class="col"><a href="{% url 'search' %}?query=Hoi+An" style="text-decoration: none;"><img src="https://cdnimgen.vietnamplus.vn/uploaded/wbxx/2021_10_25/phocohoian12.jpg" class="rounded-circle hpcircle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Hội An</h4></a></div>
-          <div class="col"><a href="{% url 'search' %}?query=Ha+Noi" style="text-decoration: none;"><img src="https://amthucbonmua.vn/wp-content/uploads/2020/11/ban-do-dl-viet-nam-2.jpg" class="rounded-circle hpcircle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Hà Nội</h4></a></div>
-          <div class="col"><a href="{% url 'search' %}?query=Can+Tho" style="text-decoration: none;"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Can-tho-tuonglamphotos.jpg" class="rounded-circle hpcircle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Cần Thơ</h4></a></div>
-          <div class="col"><a href="{% url 'search' %}?query=Da+Lat" style="text-decoration: none;"><img src="https://a.cdn-hotels.com/gdcs/production154/d1245/0a3c326f-cedf-4cf9-ada2-71f7517d0a09.jpg?impolicy=fcrop&w=800&h=533&q=medium" class="rounded-circle hpcircle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Đà Lạt</h4></a></div>
-          <div class="col"><a href="{% url 'search' %}?query=Ho+Chi+Minh" style="text-decoration: none;"><img src="https://vir.com.vn/stores/news_dataimages/hung/052021/15/18/in_article/vietnam-a-safe-destination-for-development-of-fdi.jpg" class="rounded-circle hpcircle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>HCM</h4></a></div>
-          <div class="col"><a href="{% url 'search' %}?query=Hue" style="text-decoration: none;"><img src="https://localvietnam.com/wp-content/uploads/2021/04/hue-imperial-gate.jpg" class="rounded-circle hpcircle" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Huế</h4></a></div>
+          <div class="col"><a href="{% url 'search' %}?query=Ha+Long" style="text-decoration: none;"><img src="https://www.planetware.com/photos-large/VIE/vietnam-halong-bay.jpg" class="rounded-circle hpcircle shadow-lg" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Hạ Long</h4></a></div>
+          <div class="col"><a href="{% url 'search' %}?query=Da+Nang" style="text-decoration: none;"><img src="https://image-en.nhandan.vn/w800/Uploaded/2023/aslxvtxwtys/2023_03_31/vietnam-2762.jpg" class="rounded-circle hpcircle shadow-lg" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Đà nẵng</h4></a></div>
+          <div class="col"><a href="{% url 'search' %}?query=Hoi+An" style="text-decoration: none;"><img src="https://cdnimgen.vietnamplus.vn/uploaded/wbxx/2021_10_25/phocohoian12.jpg" class="rounded-circle hpcircle shadow-lg" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Hội An</h4></a></div>
+          <div class="col"><a href="{% url 'search' %}?query=Ha+Noi" style="text-decoration: none;"><img src="https://amthucbonmua.vn/wp-content/uploads/2020/11/ban-do-dl-viet-nam-2.jpg" class="rounded-circle hpcircle shadow-lg" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Hà Nội</h4></a></div>
+          <div class="col"><a href="{% url 'search' %}?query=Can+Tho" style="text-decoration: none;"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Can-tho-tuonglamphotos.jpg" class="rounded-circle hpcircle shadow-lg" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Cần Thơ</h4></a></div>
+          <div class="col"><a href="{% url 'search' %}?query=Da+Lat" style="text-decoration: none;"><img src="https://a.cdn-hotels.com/gdcs/production154/d1245/0a3c326f-cedf-4cf9-ada2-71f7517d0a09.jpg?impolicy=fcrop&w=800&h=533&q=medium" class="rounded-circle hpcircle shadow-lg" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Đà Lạt</h4></a></div>
+          <div class="col"><a href="{% url 'search' %}?query=Ho+Chi+Minh" style="text-decoration: none;"><img src="https://vir.com.vn/stores/news_dataimages/hung/052021/15/18/in_article/vietnam-a-safe-destination-for-development-of-fdi.jpg" class="rounded-circle hpcircle shadow-lg" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>HCM</h4></a></div>
+          <div class="col"><a href="{% url 'search' %}?query=Hue" style="text-decoration: none;"><img src="https://localvietnam.com/wp-content/uploads/2021/04/hue-imperial-gate.jpg" class="rounded-circle hpcircle shadow-lg" style="max-width: 105px; height: 105px; object-fit: cover;" alt=""><h4>Huế</h4></a></div>
 
         </div>
       </div>
@@ -106,7 +106,7 @@
 
     <br>
 
-    <div class="container-fluid p-4 rounded" style=" background-color: #78C2AD;">            
+    <div class="container-fluid p-4 rounded shadow-lg" style=" background-color: #78C2AD;">            
 
       <form class="d-flex mx-auto text-center" style="max-width: 500px;" role="search"method="get" action="{% url 'search' %}">
         <input name="query" class="form-control me-2 rounded-pill shadow-sm" type="search" autocomplete="off" placeholder="Tìm kiếm" aria-label="Search" type="text" value="{{ query }}">
@@ -119,7 +119,12 @@
 
     <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 
+    <div class="container-fluid p-4 rounded shadow-lg" style=" background-color: #A9A9A9;">            
 
+      <h3 class="text-white text-center"><i class="fa-solid fa-phone-volume"></i>  Hỗ trợ : Le Minh Kiet 0000000000</h3>
+      <h3 class="text-white text-center"><i class="fa-solid fa-envelope"></i> Email: LMK@yahoo.com</h3>
+
+    </div>
     
 
         </tbody>
