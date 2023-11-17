@@ -263,8 +263,8 @@ def CreateSessionStripeView(request,pk):
             ],
             metadata={"product_id":bookings.pk},
             mode = "payment",
-            success_url = "http://127.0.0.1:8000/success",
-            cancel_url = "http://127.0.0.1:8000/cancelpay"
+            success_url = "http://34.124.213.24/success",
+            cancel_url = "http://34.124.213.24/cancelpay"
     ) 
     return redirect(pay_session.url)    
 def cancelpay(request):
