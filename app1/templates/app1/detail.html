@@ -148,7 +148,7 @@
         {% for comment in comment %}
 
             <div class="col p-2 px-auto mx-auto">
-                <div class="p-3 border bg-light rounded" style="word-wrap: break-word;">{{comment.Đánh_giá|floatformat:1}} {{comment.Nhận_xét}}<p class="d-flex justify-content-end">by{{comment.created_by}}</p></div>
+                <div class="p-3 border bg-light rounded" style="word-wrap: break-word;">{{comment.Đánh_giá|floatformat:1}} {{comment.Nhận_xét}}<p class="d-flex justify-content-end">by {{comment.created_by}}</p></div>
             </div>
 
         {% endfor %}

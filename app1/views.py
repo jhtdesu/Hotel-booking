@@ -202,9 +202,9 @@ def room(request, pk):
         case_2 = Booking.objects.filter(room = rooms, check_in__lte=check_out, check_out__gte=check_out).exists()
         case_3 = Booking.objects.filter(room = rooms, check_in__gte=check_in, check_out__lte=check_out).exists()
         if datetime.datetime.now().date()>=ci:
-            messages.error(request, "Ngay khong hop le")
+            messages.error(request, "Ngày không hợp lệ")
         elif(case_1 or case_2 or case_3):
-            messages.error(request, "Loi")
+            messages.error(request, "Lỗi")
         else:    
             rooms = Room.objects.filter()
             booking = Booking(
