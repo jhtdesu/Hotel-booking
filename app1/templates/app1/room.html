@@ -4,7 +4,7 @@
 
 {% block content %}
     
-<div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Booking section</b></h2></div>
+<div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Đặt Phòng</b></h2></div>
 
 <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 <br>
@@ -13,7 +13,7 @@
 
     {% csrf_token %}
 
-<div class="container p-3 rounded shadow-md" style=" background-color: #78C2AD;">
+<div class="container p-3 rounded shadow-lg" style=" background-color: #78C2AD;">
     <div class="row">
         <div class="col-3">
 
@@ -26,15 +26,10 @@
                     {% endif %}
                     <br>
                     <br>
-                    {% if rooms.is_booked == True %}
 
-                        <h3 style="color: red;">Phòng đã bị đặt</h3>
+                        <h3 class="text-danger">Giá Phòng</h3>
+                        <h3>{{rooms.price}} <b class="text-warning">đ</b> / Ngày</h3>
 
-                        <h3 style="color: red;">bởi {{rooms.created_by}}</h3>
-                        
-                    {% else %}
-                        <h3 style="color: #78C2AD;">Phòng còn trống</h3>
-                    {% endif %}
 
 
                 </div>
@@ -68,16 +63,48 @@
 
                 <div class="row">
 
-                    <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 97%; background-color: aliceblue;" >
-                    
-                        <h4>Giá phòng</h4>
+                    <div class="container p-3 text-center rounded mx-auto px-auto shadow-lg" style="width: 97%; min-height: 200px; background-color: aliceblue;" >
+                        
+                        <h4>Mô tả</h4>
                         <hr style=" height: 3px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
-                        <div class="container rounded px-auto mx-auto p-3" style=" background-color: #D9D9D9;">
+                        <div class="container rounded px-auto mx-auto p-3" style="min-height: 150px; background-color: #D9D9D9;">
 
-                            <h3>{{ rooms.price }} $</h3>
+                            <p style="word-wrap: break-word;">{{ rooms.description }}</p>
 
                         </div>
                         
+                    </div>
+
+                </div>
+
+                <br>
+
+                <div class="row">
+
+                    <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 97%; background-color: aliceblue;" >
+                    
+                        <h4>Phòng đã bị đặt</h4>
+                        <hr style=" height: 3px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+
+                            <div class="row row-cols-3 row-gap-4 p-3 text-center" style=" background-color: #D9D9D9;">
+
+                                {% for bookings in bookings %}
+                                    {% if bookings.room == rooms %}
+
+                                        <div class="container rounded px-auto mx-auto text-center p-2" style="background-color: aliceblue; width: 30%;">
+
+                                            <h6 class="text-info">{{ bookings.check_in }}</h6>
+                                            <h6>tới</h6>
+                                            <h6 class="text-info">{{ bookings.check_out }}</h6>
+
+                                        </div>
+                                        &nbsp;
+                                
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+
                         </div>
 
                 </div>
@@ -86,7 +113,7 @@
 
                 <div class="row rounded text-center p-2 mx-auto px-auto" style="background-color: aliceblue;">
                     
-                    <h4>Date</h4>
+                    <h4>Chọn ngày đặt</h4>
                     
                     <h3><i class="fa-regular fa-calendar" style="color: #78C2AD;"></i></h3>
 
@@ -98,7 +125,7 @@
 
                         <div class="container-fluid p-3 text-center rounded mx-auto px-auto">
                     
-                            {{form.book_in|as_crispy_field}}
+                            {{form.check_in|as_crispy_field}}
 
                             </div>
 
@@ -108,7 +135,7 @@
 
                         <div class="container-fluid p-3 text-center rounded mx-auto px-auto">
                     
-                            {{form.book_out|as_crispy_field}}
+                            {{form.check_out|as_crispy_field}}
     
                             </div>
 
@@ -118,33 +145,20 @@
                 </div>
 
         </div>
-          
+        
     </div>
 
     <br>
 
     <div class="container d-flex justify-content-end">
 
-        
-        {% if rooms.is_booked == True %}
 
-            {% if rooms.created_by == user %}
-
-                <button type="submit" class="btn btn-danger btn-lg"> 
-                    Hủy phòng
-
-                </button>
-
-            {% endif %}
-
-        {% else %}
 
             <button type="submit" class="btn btn-warning btn-lg"> 
                             Đặt phòng
 
                         </button>
 
-        {% endif %}
     </div>
         
 

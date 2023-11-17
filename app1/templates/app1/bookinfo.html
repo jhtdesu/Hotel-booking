@@ -1,26 +1,37 @@
 {% extends 'app1/base.html' %}
 {% block content %}
 
-    {% for rooms in rooms %}
+<div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Danh sách phòng đã đặt</b></h2></div>
 
-        {% if rooms.created_by == user %}
-        
-            {% if rooms.is_booked == True %}
+<hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 
-                <div class="container text-center">
-                    <a href="{% url 'room' pk=rooms.pk %}"target="_blank">
+<br>
+
+    {% for bookings in bookings %}
+
+        {% if bookings.created_by == request.user %}
+
+            <div class="container bookinfo rounded">
+
+                <a href="{% url 'bookedroom' bookings.pk %}" style="text-decoration: none;">
+                    <div class="container text-center">
+                                                    
+                            <div class="rounded-b-xl">
+                                <br>
+                                <h3 class="text-white">Phòng {{ bookings.room.name }} từ <b class="text-secondary">{{bookings.check_in}}</b> đến <b class="text-secondary">{{bookings.check_out}}</b></h3>
+                                <br>
+                            </div>
                         
-                        <div class="p-6 bg-white rounded-b-xl">
-                            <br>
-                            <h2 class="text-2xl hotelname"># {{ rooms.name }}</h2>
-                        </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
 
-            {% endif %}
+            </div>
 
+            <br>
         {% endif %}
 
     {% endfor %}
 
+<hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;"> 
+    
 {% endblock %}

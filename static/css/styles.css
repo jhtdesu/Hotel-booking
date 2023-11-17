@@ -34,3 +34,43 @@
 .nav-item:hover {
     transform: scale(1.10);
 }
+
+.hpcircle {
+    transition: all 0.3s;
+}
+
+.hpcircle:hover {
+    transform: scale(1.10);
+    filter: brightness(80%);
+}
+
+.banner {
+    transition: all 0.3s;
+}
+
+.banner:hover {
+    filter: brightness(60%);
+
+}
+
+.room {
+    transition: all 0.3s;
+    background-color: #D9D9D9;
+}
+
+.room:hover {
+    background-color: #A9A9A9;
+}
+
+.bookinfo {
+    transition: all 0.3s;
+    background-color: #78C2AD;
+}
+
+.bookinfo:hover {
+    filter: brightness(90%);
+}
+
+.carousel-item {
+    transition: all 0.3s;
+}

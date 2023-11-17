@@ -7,13 +7,14 @@
 
         {% csrf_token %}
             
-        {{form.body|as_crispy_field}}
+        {{form.Đánh_giá|as_crispy_field}}
+        {{form.Nhận_xét|as_crispy_field}}
 
         <br>
         <div class="container d-flex justify-content-end">
 
             <button type="submit" class="btn btn-primary"> 
-                Comment
+                Đánh giá
     
             </button>
             

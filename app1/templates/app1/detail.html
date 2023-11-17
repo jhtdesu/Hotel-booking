@@ -4,7 +4,7 @@
 
 
 {% block content %}
-<div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Booking section</b></h2></div>
+<div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Chi tiết khách sạn</b></h2></div>
 
 <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 <br>
@@ -15,7 +15,7 @@
 
             <div class="row px-auto mx-auto">
                 
-                <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" width: 90%; background-color: aliceblue;">
+                <div class="container-fluid p-3 text-center rounded mx-auto px-auto shadow-lg" style=" width: 90%; background-color: aliceblue;">
 
                     {% if hotel.image %} 
                     <img src="{{ hotel.image.url }}" class="rounded shadow-lg" style="width: 200px; height: 250px; object-fit: cover;" alt="ảnh lỗi r huhu">
@@ -27,14 +27,14 @@
             </div>
             <br>
             <div class="row px-auto mx-auto">
-                <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" width: 90%; min-height: 200px; background-color: aliceblue;">
+                <div class="container-fluid p-3 text-center rounded mx-auto px-auto shadow-lg" style=" width: 90%; min-height: 200px; background-color: aliceblue;">
                 
 
                         <h3>Đánh giá</h3>
 
                     <div class="container rounded px-auto mx-auto p-3" style="min-height: 250px; background-color: #D9D9D9;">
 
-                        <h4>{{hotel.rating}} <i class="fa-solid fa-star" style="color: #fcff52;"></i></h4>
+                        <h4>{{hotel.rating_average|floatformat:1}} <i class="fa-solid fa-star" style="color: #fcff52;"></i></h4>
                         
 
                     </div>
@@ -51,20 +51,13 @@
 
                 <div class="row">
 
-                    <div class="col-10 rounded p-2 px-auto mx-auto">
-                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 99%; background-color: aliceblue;" >
+                    <div class="col-10 rounded p-2 px-auto mx-auto rounded shadow-lg">
+                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style=" background-color: aliceblue;" >
                     
                         <h2>{{ hotel.name }}</h2>
 
                         </div>
                     
-                    </div>
-                        <div class="col-2 rounded p-2 px-auto mx-auto">
-                            <div class="container-fluid p-3 rounded mx-auto px-auto bg-warning" style="width: 93%; height: 101%;">
-                    
-                        <h3>Ghim</h3>
-
-                        </div>
                     </div>
 
                 </div>
@@ -73,17 +66,17 @@
 
                 <div class="row">
 
-                    <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 97%; min-height: 250px; background-color: aliceblue;" >
-                    
+                    <div class="container p-3 text-center rounded mx-auto px-auto shadow-lg" style="width: 97%; min-height: 250px; background-color: aliceblue;" >
+                        
                         <h4>Mô tả</h4>
                         <hr style=" height: 3px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
                         <div class="container rounded px-auto mx-auto p-3" style="min-height: 250px; background-color: #D9D9D9;">
 
-                            <h3>{{ hotel.description }}</h3>
+                            <p style="word-wrap: break-word;">{{ hotel.description }}</p>
 
                         </div>
                         
-                        </div>
+                    </div>
 
                 </div>
 
@@ -101,27 +94,25 @@
 
                 <br>
 
-                <div class="row rounded text-center p-2 px-auto mx-auto" style=" background-color: aliceblue;">
+                <div class="row rounded text-center p-2 px-auto mx-auto shadow-lg" style=" background-color: aliceblue;">
                     {% for rooms in rooms %}
                     <div class="col">
 
-                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 97%; background-color: #D9D9D9;" >
+                        <div class="container room rounded">
 
-                        {% if rooms.is_booked == True %}
+                            <a href="{% url 'room' pk=rooms.pk %}" style="text-decoration: none;">
 
-                            <a style="color: red;" href="{% url 'room' pk=rooms.pk %}"target="_blank">Room Detail</a>
+                                <div class="container-fluid p-3 text-center rounded mx-auto px-auto">
 
-                        {% else %}
+                                    <h3># {{rooms.name}}</h5>
 
-                            <a href="{% url 'room' pk=rooms.pk %}"target="_blank">Room Detail</a>
+                                    <h5>{{rooms.price}} đ</h5>
 
-                        {% endif %}
+                                </div>
 
-                            <h3># {{rooms.name}}</h5>
+                            </a> 
 
-                            <h5>{{rooms.price}}$</h5>
-
-                            </div>
+                        </div>
 
                     </div>
                     {% endfor %}
@@ -129,47 +120,12 @@
 
                 <br>
 
-                <div class="row rounded text-center p-2 mx-auto px-auto" style="background-color: aliceblue;">
-                    
-                    <h4>Date</h4>
-                    
-                    <h3><i class="fa-regular fa-calendar" style="color: #78C2AD;"></i></h3>
-
-                    <hr style=" height: 3px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
-                    <div class="col">
-
-                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto">
-                    
-                            <input type="date" class="form-control me-2 rounded-pill shadow text-center" style="min-height: 70px;">
-
-                            </div>
-
-                    </div>
-
-                    <div class="col">
-
-                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto">
-                    
-                            <input type="date" class="form-control me-2 rounded-pill shadow text-center" style="min-height: 70px;">
-    
-                            </div>
-
-                    </div>
-
-                </div>
 
         </div>
           
     </div>
 
-    <br>
-
-    <div class="container d-flex justify-content-end">
-
-        <a class="btn btn-warning btn-lg" " type="button" href=""> Đặt phòng</a>
-
-    </div>
-        
+    <br>        
 
     <br>
 
@@ -179,7 +135,7 @@
 
 <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 
-<div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Người dùng đánh giá</b></h2></div>
+<div class="container-fluid text-center"><h2 style="color: #78C2AD;"><b>Người dùng đánh giá & bình luận</b></h2></div>
 
 <hr style="height: 5px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
 
@@ -187,12 +143,21 @@
 
 <div class="container p-3 rounded shadow-md" style=" background-color: #78C2AD;">
 
-    <div class="row gx-5 px-auto mx-auto p-3">
+    <div class="row row-cols-3 gx-5 px-auto mx-auto p-3">
 
         {% for comment in comment %}
 
-            <div class="col p-2 px-auto mx-auto">
-                <div class="p-3 border bg-light rounded">{{comment.body}} <p class="d-flex justify-content-end">by{{comment.created_by}}</p></div>
+            <div class="col p-2 px-auto mx-auto rounded shadow-lg">
+                <div class="p-3 border bg-light rounded" style="word-wrap: break-word;">
+
+                    <div class="rounded p-1 d-flex justify-content-center" style="width: 17%; background-color: #78C2AD;">
+                        <h6>{{comment.Đánh_giá|floatformat:1}}<i class="fa-solid fa-star" style="color: #fcff52;"></i></h6> 
+                    </div>
+
+                    {{comment.Nhận_xét}}
+                    <div class="d-flex justify-content-end"><p>bởi</p> &nbsp; <p class="text-info">{{comment.created_by}}</p></div>
+
+                </div>
             </div>
 
         {% endfor %}
@@ -202,7 +167,7 @@
 
 <br>
 
-<div class="container text-center"><a class="btn btn-primary btn-lg" type="submit" href="{% url 'comment' hotel.id %}"> Bình luận </a>
+<div class="container text-center"><a class="btn btn-primary btn-lg" type="submit" href="{% url 'comment' hotel.id %}">Tạo đánh giá </a>
 
 <br>
 
