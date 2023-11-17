@@ -1,0 +1,132 @@
+{% extends 'app1/base.html' %}
+{% block content %}
+
+    {% for bookings in bookings %}
+    <div class="container p-3 rounded shadow-lg" style=" background-color: #78C2AD;">
+        <div class="row">
+            <div class="col-3">
+    
+                <div class="row px-auto mx-auto">
+                    
+                    <div class="container-fluid p-3 text-center rounded mx-auto px-auto shadow-lg" style=" width: 90%; background-color: aliceblue;">
+    
+                        {% if bookings.room.image %} 
+                        <img src="{{ bookings.room.image.url }}" class="rounded shadow-lg" style="width: 200px; height: 250px; object-fit: cover;" alt="ảnh lỗi r huhu">
+                        {% endif %}
+                        <br>
+                        <br>
+    
+                            <h3 class="text-danger">Giá Phòng</h3>
+                            <h3>{{bookings.room.price}} đ</h3>
+                            <br>
+                            <h3 class="text-danger">Trạng thái</h3>
+
+                            {% if bookings.pay_status == True %}
+
+                            <h5 class="text-success">Đã thanh toán</h3>
+
+                            {% else %}
+
+                            <h5 class="text-secondary">Chưa thanh toán</h5>
+
+                            {% endif %}
+    
+                    </div>
+    
+                    
+                </div>
+                <br>
+                <div class="row px-auto mx-auto">                
+    
+                </div>
+    
+    
+            </div>
+    
+            <div class="col-9">
+    
+                    <div class="row">
+    
+                        <div class="col-10 rounded p-2 px-auto mx-auto rounded shadow">
+                            <div class="container-fluid p-3 text-center rounded mx-auto px-auto" style="width: 99%; background-color: aliceblue;" >
+                        
+                            <h2>Phòng # {{ bookings.room.name }} của {{bookings.room.hotel}}</h2>
+    
+                            </div>
+                        
+                        </div>
+    
+                    </div>
+    
+                    <br>
+    
+                    <div class="row">
+    
+                        <div class="container-fluid p-3 text-center rounded mx-auto px-auto shadow-lg shadow-lg" style="height: 370px; width: 97%; background-color: aliceblue;" >
+                        
+                            <h4>Lịch đặt phòng</h4>
+                            <hr style=" height: 3px; border:none; color: #A9A9A9;background-color: #A9A9A9;">
+    
+                                <div class="p-3 text-center rounded" style=" background-color: #D9D9D9;">
+    
+    
+                                            <div class="container rounded px-auto mx-auto text-center p-2" style="background-color: aliceblue;">
+    
+                                                <h5 class="text-danger">{{ bookings.check_in }}</h5>
+                                                <h5>tới</h5>
+                                                <h5 class="text-danger">{{ bookings.check_out }}</h5>
+                                                <h6>Ngày đặt: {{ bookings.book_date }}</h6>
+    
+                                            </div>
+                                    
+
+    
+                                </div>
+
+                                <br>
+
+                                <div class="p-3 text-center rounded" style="height: 90px; background-color: #D9D9D9;">
+    
+    
+                                    <div class="container rounded px-auto mx-auto text-center p-1" style="background-color: aliceblue;">
+
+                                        <h6 class="text-info">Phòng chỉ hợp lệ sau khi bạn đã thanh toán</h6>
+                                        <h6 class="text-info">Sau khi thanh toán nếu có nhu cầu hủy phòng hãy liên hệ với nhân viên để nhận hỗ trợ</h6>
+
+                                    </div>
+                                    &nbsp;
+                            
+
+
+                        </div>
+    
+                            </div>
+    
+                    </div>
+    
+                    
+                    <br>
+    
+        <br>
+    
+    </div>
+
+    <div class="d-flex justify-content-end">
+
+        {% if bookings.pay_status == True %}
+
+        <a href="{% url 'cancel' bookings.pk %}"><button type="submit" class="btn btn-danger btn-lg shadow-lg" onclick="return confirm('Bạn có chắc chắn hủy phòng ?');"> Hủy Phòng </button></a>
+
+        {% else %}
+
+        <a href="{% url 'cancel' bookings.pk %}"><button type="submit" class="btn btn-danger btn-lg shadow-lg" onclick="return confirm('Bạn có chắc chắn hủy phòng ?');"> Hủy Phòng </button></a>
+        &nbsp; &nbsp; 
+        <a href="{% url 'payment' bookings.pk %}"><button type="submit" class="btn btn-warning btn-lg shadow-lg"> Thanh Toán </button></a>
+        
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+{% endblock %}
