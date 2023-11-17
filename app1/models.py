@@ -63,7 +63,7 @@ class Room(models.Model):
         self.hotel.canculator_price()
 
     def __str__(self):
-        return self.name
+        return '%s-%s'%(self.name, self.hotel)
     
 class Comment(models.Model):
     hotel = models.ForeignKey(Hotel, related_name="comments", on_delete=models.CASCADE)
