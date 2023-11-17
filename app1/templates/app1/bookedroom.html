@@ -115,11 +115,11 @@
 
         {% if bookings.pay_status == True %}
 
-        <a href="{% url 'cancel' bookings.pk %}"><button type="submit" class="btn btn-danger btn-lg"> Hủy Phòng </button></a>
+        <a href="{% url 'cancel' bookings.pk %}"><button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Bạn có chắc chắn ?');"> Hủy Phòng </button></a>
 
         {% else %}
 
-        <a href="{% url 'cancel' bookings.pk %}"><button type="submit" class="btn btn-danger btn-lg"> Hủy Phòng </button></a>
+        <a href="{% url 'cancel' bookings.pk %}"><button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Bạn có chắc chắn ?');"> Hủy Phòng </button></a>
         &nbsp; &nbsp; 
         <a href="{% url 'payment' bookings.pk %}"><button type="submit" class="btn btn-warning btn-lg"> Thanh Toán </button></a>
         

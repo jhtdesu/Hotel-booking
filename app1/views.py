@@ -103,7 +103,7 @@ def editinfo(request):
 
 @login_required(login_url='login')
 def info(request):
-   
+
     return render(request, 'app1/info.html')
 
 @login_required(login_url='login')
@@ -218,8 +218,8 @@ def room(request, pk):
             booking.save()
             return redirect("homepage")
             messages.success(request, "Bạn đã đặt phòng thành công")
-    return render(request, 'app1/room.html',{
-        'rooms' : rooms,
+    return render(request, 'app1/room.html', {
+        'rooms': rooms,
         'form' : form,
         'bookings' : bookings,
     })
