@@ -250,8 +250,8 @@ def CreateSessionStripeView(request,pk):
                         "currency":"vnd",
                         "unit_amount":int(bookings.room.price),
                         "product_data":{
-                            "name":bookings.room.name,
-                            "description":bookings.room.description,
+                            "name":bookings.room.hotel.name,
+                            "description":bookings.room.name,
                             "images":[
                                 f"{bookings.room.image}"
                             ],

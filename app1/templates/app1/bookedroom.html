@@ -23,11 +23,11 @@
 
                             {% if bookings.pay_status == True %}
 
-                            <h5>Đã thanh toán</h3>
+                            <h5 class="text-success">Đã thanh toán</h3>
 
                             {% else %}
 
-                            <h5>Chưa thanh toán</h5>
+                            <h5 class="text-secondary">Chưa thanh toán</h5>
 
                             {% endif %}
     
@@ -72,9 +72,10 @@
     
                                             <div class="container rounded px-auto mx-auto text-center p-2" style="background-color: aliceblue;">
     
-                                                <h6 class="text-danger">{{ bookings.check_in }}</h6>
-                                                <h6>tới</h6>
-                                                <h6 class="text-danger">{{ bookings.check_out }}</h6>
+                                                <h5 class="text-danger">{{ bookings.check_in }}</h5>
+                                                <h5>tới</h5>
+                                                <h5 class="text-danger">{{ bookings.check_out }}</h5>
+                                                <h6>Ngày đặt: {{ bookings.book_date }}</h6>
     
                                             </div>
                                     
@@ -84,12 +85,11 @@
 
                                 <br>
 
-                                <div class="p-3 text-center rounded" style="height: 125px; background-color: #D9D9D9;">
+                                <div class="p-3 text-center rounded" style="height: 90px; background-color: #D9D9D9;">
     
     
-                                    <div class="container rounded px-auto mx-auto text-center p-2" style="background-color: aliceblue;">
+                                    <div class="container rounded px-auto mx-auto text-center p-1" style="background-color: aliceblue;">
 
-                                        &nbsp;
                                         <h6 class="text-info">Phòng chỉ hợp lệ sau khi bạn đã thanh toán</h6>
                                         <h6 class="text-info">Sau khi thanh toán khi hủy phòng hãy liên hệ với nhân viên để hoàn lại tiền</h6>
 
