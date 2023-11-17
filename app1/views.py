@@ -203,7 +203,7 @@ def room(request, pk):
         case_3 = Booking.objects.filter(room = rooms, check_in__gte=check_in, check_out__lte=check_out).exists()
         if datetime.datetime.now().date()>=ci:
             messages.error(request, "Ngày không hợp lệ")
-        elif(case_1 or case_2 or case_3 or check_in == check_out):
+        elif(case_1 or case_2 or case_3 or check_in==check_out):
             messages.error(request, "Lỗi")
         else:    
             rooms = Room.objects.filter()
